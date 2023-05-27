@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class Home extends JFrame  {
     private final Container c = getContentPane();
-
     private final HomePanel homePanel = new HomePanel();
 
     public Home() {
@@ -13,7 +12,7 @@ public class Home extends JFrame  {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         createMenu();
-        setSize(407, 730);
+        setSize(400, 730);
         setVisible(true);
 
 
@@ -42,6 +41,8 @@ public class Home extends JFrame  {
 
         setJMenuBar(mb);
     }
+
+
 
     public static void main(String[] args) {
         new Home();

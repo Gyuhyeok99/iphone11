@@ -47,6 +47,16 @@ public class HomePanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 clickMessage.setText("");
+
+                if (startY - e.getY() > 100) {
+                    PwPanel pwPanel = new PwPanel();
+                    Home home = (Home)getTopLevelAncestor();
+                    home.remove(HomePanel.this);
+                    home.setContentPane(pwPanel);
+                    home.revalidate();
+                    home.repaint();
+
+                }
             }
         });
 
@@ -55,6 +65,7 @@ public class HomePanel extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 if (startY - e.getY() > 30) {
                     clickMessage.setText("Release to unlock");
+
                 } else {
                     clickMessage.setText("");
                 }
