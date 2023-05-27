@@ -6,35 +6,64 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class HomePanel extends JPanel {
-    private final ImageIcon background = new ImageIcon("images/backgroundImage.png");
+    private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
-    private final JLabel hourMinute;
+    private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
+    private final ImageIcon battery = Images.BATTERY;
+    private final ImageIcon lock = Images.LOCK;
     private final JLabel dayMonth;
-    private final JLabel clickMessage;
+    private final JLabel hourMinute;
     private int startY;
 
     public HomePanel() {
-        setLayout(null);
-        hourMinute = new JLabel();
-        hourMinute.setFont(new Font("Arial", Font.PLAIN, 60));
-        hourMinute.setForeground(Color.WHITE);
-        hourMinute.setHorizontalAlignment(SwingConstants.CENTER);
-        add(hourMinute);
+        setLayout(new BorderLayout());
+        // North part
+        JPanel northPanel = new JPanel(new FlowLayout());
+        northPanel.setOpaque(false);
+        add(northPanel, BorderLayout.NORTH);
+
+        JLabel minuteHour = Time.getHourMinute();
+        minuteHour.setFont(new Font("Arial", Font.PLAIN, 22));
+        JLabel whiteSpace = new JLabel("                                                ");
+
+        JLabel lte = new JLabel("LTE");
+        lte.setForeground(Color.WHITE);
+        lte.setFont(new Font("Arial", Font.PLAIN, 22));
+
+        JLabel tel = new JLabel(telecommunications);
+        JLabel bat = new JLabel(battery);
+
+        northPanel.add(minuteHour);
+        northPanel.add(whiteSpace);
+        northPanel.add(tel);
+        northPanel.add(lte);
+        northPanel.add(bat);
+
+        // CENTER part
+        JPanel centerPanel = new JPanel(null);
+        centerPanel.setOpaque(false);
+        add(centerPanel, BorderLayout.CENTER);
+
+        JLabel lockImage = new JLabel(lock);
+        lockImage.setBounds(165, 0, 75, 75);
+        centerPanel.add(lockImage);
+
+        hourMinute = Time.getHourMinute();
+        centerPanel.add(hourMinute);
 
         dayMonth = new JLabel();
         dayMonth.setFont(new Font("Arial", Font.PLAIN, 15));
         dayMonth.setForeground(Color.WHITE);
         dayMonth.setHorizontalAlignment(SwingConstants.CENTER);
-        add(dayMonth);
+        centerPanel.add(dayMonth);
 
-        clickMessage = new JLabel();
+        JLabel clickMessage = new JLabel();
         clickMessage.setFont(new Font("Arial", Font.PLAIN, 15));
         clickMessage.setForeground(Color.WHITE);
         clickMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        add(clickMessage);
+        centerPanel.add(clickMessage);
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -78,9 +107,7 @@ public class HomePanel extends JPanel {
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH : mm");
-
-        hourMinute.setText(now.format(formatter));
+        Time.updateHourMinute(hourMinute);
         hourMinute.setBounds(0, 80, getWidth(), 60);
 
         int month = now.getMonthValue();
@@ -95,6 +122,6 @@ public class HomePanel extends JPanel {
         dayMonth.setBounds((getWidth() - 200) / 2, 120, 200, 60);
 
         g.setColor(Color.WHITE);
-        g.fillRoundRect(140, getHeight() - 60, 140, 8, 10, 10);
+        g.fillRoundRect(140, getHeight() - 35, 140, 8, 10, 10);
     }
 }

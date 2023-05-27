@@ -6,34 +6,50 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PwPanel extends JPanel {
-
-    private final ImageIcon background = new ImageIcon("images/backgroundImage.png");
+    private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
-    private final ImageIcon lock = new ImageIcon("images/password/Lock.png");
-    private final ImageIcon inputPw = new ImageIcon("images/password/inputPw.png");
-    private final ImageIcon pw = new ImageIcon("images/password/pw.png");
-    private final JButton[] jBtns;
-    private final JButton emergencyBtn;
-    private final JButton cancelBtn;
-    private final JLabel passcode;
-    private final JLabel clickMessage;
-    private final ImageIcon[] numImgs;
-    private final JButton[] numBtns;
-    private final JLabel[] inputPwLabels;
-    private int count = 0;
+    private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
+    private final ImageIcon battery = Images.BATTERY;
+    private final ImageIcon lock = Images.LOCK;
+    private final ImageIcon inputPw = Images.INPUT_PW;
+    private final ImageIcon pw = Images.PW;
 
     public PwPanel() {
         setLayout(new BorderLayout());
 
+        // North part
+        JPanel northPanel = new JPanel(new FlowLayout());
+        northPanel.setOpaque(false);
+        add(northPanel, BorderLayout.NORTH);
+
+        JLabel minuteHour = Time.getHourMinute();
+        minuteHour.setFont(new Font("Arial", Font.PLAIN, 22));
+        JLabel whiteSpace = new JLabel("                                                ");
+
+        JLabel lte = new JLabel("LTE");
+        lte.setForeground(Color.WHITE);
+        lte.setFont(new Font("Arial", Font.PLAIN, 22));
+
+        JLabel tel = new JLabel(telecommunications);
+        JLabel bat = new JLabel(battery);
+
+        northPanel.add(minuteHour);
+        northPanel.add(whiteSpace);
+        northPanel.add(tel);
+        northPanel.add(lte);
+        northPanel.add(bat);
+
+
         // CENTER part
         JPanel centerPanel = new JPanel(null);
         centerPanel.setOpaque(false);
+        add(centerPanel, BorderLayout.CENTER);
 
         JLabel lockImage = new JLabel(lock);
-        lockImage.setBounds(165, 20, 75, 75);
+        lockImage.setBounds(165, 0, 75, 75);
         centerPanel.add(lockImage);
 
-        passcode = new JLabel("Enter Passcode");
+        JLabel passcode = new JLabel("Enter Passcode");
         passcode.setForeground(Color.WHITE);
         passcode.setOpaque(false);
         passcode.setHorizontalAlignment(SwingConstants.CENTER);
@@ -42,15 +58,15 @@ public class PwPanel extends JPanel {
         centerPanel.add(passcode);
 
         int pwX = 90; int pwY = 130; int pwWidth = 24; int pwHeight = 24;
-        inputPwLabels = new JLabel[6];
+        JLabel[] inputPwLabels = new JLabel[6];
         for(int i = 0; i < 6; i ++) {
             inputPwLabels[i] = new JLabel(inputPw);
             inputPwLabels[i].setBounds(pwX + i * 40, pwY, pwWidth, pwHeight);
             centerPanel.add(inputPwLabels[i]);
         }
 
-        numImgs = new ImageIcon[10];
-        numBtns = new JButton[10];
+        ImageIcon[] numImgs = new ImageIcon[10];
+        JButton[] numBtns = new JButton[10];
         int btnWidth = 80;
         int btnHeight = 80;
         int x = 60; int y = 200;
@@ -62,6 +78,7 @@ public class PwPanel extends JPanel {
             numBtns[i].setContentAreaFilled(false);
             numBtns[i].setBorderPainted(false);
             numBtns[i].addActionListener(new ActionListener() {
+                int count = 0;
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int j = 0; j < inputPwLabels.length; j++) {
@@ -70,7 +87,6 @@ public class PwPanel extends JPanel {
                                 if (j < inputPwLabels.length - 1) {
                                     inputPwLabels[j + 1].setIcon(inputPw);
                                 }
-
                                 count++;
                                 if (count == 6) {
                                     MainPanel mainPanel = new MainPanel();
@@ -100,19 +116,18 @@ public class PwPanel extends JPanel {
         }
         numBtns[0].setBounds(160, 500, btnWidth, btnHeight);
 
-        add(centerPanel, BorderLayout.CENTER);
-
         //SOUTH part
-        jBtns = new JButton[2];
-        cancelBtn = new JButton("Cancel");
-        emergencyBtn = new JButton("Emergency");
-
         JPanel actionPanel = new JPanel();
         actionPanel.setOpaque(false);
-
-        actionPanel.add(cancelBtn);
-        actionPanel.add(emergencyBtn);
         add(actionPanel, BorderLayout.SOUTH);
+
+        JButton[] jBtns = new JButton[2];
+        JButton emergencyBtn = new JButton("Emergency");
+        JButton cancelBtn = new JButton("Cancel");
+
+        actionPanel.add(emergencyBtn);
+        actionPanel.add(cancelBtn);
+
 
         jBtns[0] = cancelBtn;
         jBtns[1] = emergencyBtn;
@@ -125,7 +140,7 @@ public class PwPanel extends JPanel {
             jBtns[i].setFont(new Font("Arial", Font.PLAIN, 15));
         }
 
-        clickMessage = new JLabel();
+        JLabel clickMessage = new JLabel();
         clickMessage.setFont(new Font("Arial", Font.PLAIN, 15));
         clickMessage.setForeground(Color.WHITE);
         clickMessage.setHorizontalAlignment(SwingConstants.CENTER);
