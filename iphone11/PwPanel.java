@@ -1,4 +1,4 @@
-package home;
+package iphone11;
 
 import javax.swing.*;
 import java.awt.*;
@@ -167,6 +167,6 @@ public class PwPanel extends JPanel {
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
         g.setColor(Color.WHITE);
-        g.fillRoundRect(140, getHeight() - 8, 140, 8, 10, 10);
+        g.fillRoundRect(130, getHeight() - 8, 140, 8, 10, 10);
     }
 }

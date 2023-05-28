@@ -1,4 +1,4 @@
-package home;
+package iphone11;
 
 import javax.swing.*;
 import java.awt.*;
@@ -70,7 +70,7 @@ public class HomePanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 startY = e.getY();
-                swipeUp.setText("Swipe up to unlock");
+                swipeUp.setText("Swipe up to unlock      ");
                 swipeUp.setBounds(110, 630, 200, 30);
             }
 
@@ -79,7 +79,7 @@ public class HomePanel extends JPanel {
                 swipeUp.setText("");
 
                 if (startY - e.getY() > 100) {
-                    PwPanel pwPanel = new PwPanel();
+                    QuickSettingPanel pwPanel = new QuickSettingPanel();
                     Home home = (Home)getTopLevelAncestor();
                     home.remove(HomePanel.this);
                     home.setContentPane(pwPanel);
@@ -94,7 +94,7 @@ public class HomePanel extends JPanel {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if (startY - e.getY() > 30) {
-                    swipeUp.setText("Release to unlock");
+                    swipeUp.setText("Release to unlock      ");
 
                 } else {
                     swipeUp.setText("");
@@ -123,6 +123,6 @@ public class HomePanel extends JPanel {
         dayMonth.setBounds((getWidth() - 200) / 2, 120, 200, 60);
 
         g.setColor(Color.WHITE);
-        g.fillRoundRect(140, 694, 140, 8, 10, 10);
+        g.fillRoundRect(130, 694, 140, 8, 10, 10);
     }
 }
