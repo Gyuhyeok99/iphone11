@@ -24,18 +24,19 @@ public class HomePanel extends JPanel {
         northPanel.setOpaque(false);
         add(northPanel, BorderLayout.NORTH);
 
-        JLabel minuteHour = Time.getHourMinute();
-        minuteHour.setFont(new Font("Arial", Font.PLAIN, 22));
+        JLabel lg = new JLabel("LG U+");
+        lg.setFont(new Font("Arial", Font.PLAIN, 18));
+        lg.setForeground(Color.white);
         JLabel whiteSpace = new JLabel("                                                ");
 
         JLabel lte = new JLabel("LTE");
         lte.setForeground(Color.WHITE);
-        lte.setFont(new Font("Arial", Font.PLAIN, 22));
+        lte.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel tel = new JLabel(telecommunications);
         JLabel bat = new JLabel(battery);
 
-        northPanel.add(minuteHour);
+        northPanel.add(lg);
         northPanel.add(whiteSpace);
         northPanel.add(tel);
         northPanel.add(lte);
@@ -59,23 +60,23 @@ public class HomePanel extends JPanel {
         dayMonth.setHorizontalAlignment(SwingConstants.CENTER);
         centerPanel.add(dayMonth);
 
-        JLabel clickMessage = new JLabel();
-        clickMessage.setFont(new Font("Arial", Font.PLAIN, 15));
-        clickMessage.setForeground(Color.WHITE);
-        clickMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        centerPanel.add(clickMessage);
+        JLabel swipeUp = new JLabel();
+        swipeUp.setFont(new Font("Arial", Font.PLAIN, 15));
+        swipeUp.setForeground(Color.WHITE);
+        swipeUp.setHorizontalAlignment(SwingConstants.CENTER);
+        centerPanel.add(swipeUp);
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 startY = e.getY();
-                clickMessage.setText("Swipe up to unlock");
-                clickMessage.setBounds(110, 630, 200, 30);
+                swipeUp.setText("Swipe up to unlock");
+                swipeUp.setBounds(110, 630, 200, 30);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                clickMessage.setText("");
+                swipeUp.setText("");
 
                 if (startY - e.getY() > 100) {
                     PwPanel pwPanel = new PwPanel();
@@ -93,10 +94,10 @@ public class HomePanel extends JPanel {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if (startY - e.getY() > 30) {
-                    clickMessage.setText("Release to unlock");
+                    swipeUp.setText("Release to unlock");
 
                 } else {
-                    clickMessage.setText("");
+                    swipeUp.setText("");
                 }
             }
         });
@@ -122,6 +123,6 @@ public class HomePanel extends JPanel {
         dayMonth.setBounds((getWidth() - 200) / 2, 120, 200, 60);
 
         g.setColor(Color.WHITE);
-        g.fillRoundRect(140, getHeight() - 35, 140, 8, 10, 10);
+        g.fillRoundRect(140, 694, 140, 8, 10, 10);
     }
 }
