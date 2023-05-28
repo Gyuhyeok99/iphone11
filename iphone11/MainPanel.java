@@ -120,7 +120,12 @@ public class MainPanel extends JPanel {
                 timeCount.start(actionListener);
                 int endY = e.getY();
                 if (endY > startY && startY <= 100) {
-                    QuickSettingPanel quickSettingPanel = new QuickSettingPanel();
+                    QuickSettingPanel quickSettingPanel = null;
+                    try {
+                        quickSettingPanel = new QuickSettingPanel();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     Home home = (Home) getTopLevelAncestor();
                     home.remove(MainPanel.this);
                     home.setContentPane(quickSettingPanel);

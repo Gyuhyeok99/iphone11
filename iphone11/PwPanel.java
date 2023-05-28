@@ -5,8 +5,7 @@ import iphone11.etc.TimeCount;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class PwPanel extends JPanel {
     private TimeCount timeCount;
@@ -166,6 +165,52 @@ public class PwPanel extends JPanel {
         swipe.setFont(new Font("Arial", Font.PLAIN, 15));
         swipe.setForeground(Color.WHITE);
         swipe.setHorizontalAlignment(SwingConstants.CENTER);
+
+        timeCount = new TimeCount();
+        setFocusable(true);
+        requestFocus();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home)getTopLevelAncestor();
+                if(home != null) {
+                    home.remove(PwPanel.this);
+                    home.setContentPane(blackPanel);
+                    home.revalidate();
+                    home.repaint();
+                }
+            }
+        };
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                timeCount.start(actionListener);
+                System.out.println("Pw왜 키입력을 못받니");
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                timeCount.start(actionListener);
+                System.out.println("Pw이유를 알고싶어");
+                System.out.println("Key pressed: " + e.getKeyCode());
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                timeCount.start(actionListener);
+                System.out.println("Pw나 너무 힘들어 ㅜㅜ");
+            }
+        });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                timeCount.start(actionListener);
+            }
+        });
+
+        timeCount.start(actionListener);
     }
 
     @Override

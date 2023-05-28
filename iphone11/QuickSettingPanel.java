@@ -1,5 +1,6 @@
 package iphone11;
 
+import iphone11.etc.Audios;
 import iphone11.etc.Images;
 import iphone11.etc.TimeCount;
 
@@ -21,8 +22,11 @@ public class QuickSettingPanel extends JPanel {
     private final ImageIcon dataOff = Images.DATA_OFF;
     private final ImageIcon wifiOn = Images.WIFI_ON;
     private final ImageIcon wifiOff = Images.WIFI_OFF;
+    private final ImageIcon playback = Images.PLAYBACK;
+    private final ImageIcon stop = Images.STOP;
+    private final Audios audios;
     private int startY;
-    public QuickSettingPanel() {
+    public QuickSettingPanel() throws Exception {
         setLayout(new BorderLayout());
 
 
@@ -80,10 +84,52 @@ public class QuickSettingPanel extends JPanel {
         CommunicationBtns[2].setBounds(45, 65, 60, 60);
         CommunicationBtns[3].setBounds(115, 65, 60, 60);
 
-        CommunicationBtns[0].addActionListener(new MyActionListener(CommunicationBtns[0], airplaneOn, airplaneOff));
-        CommunicationBtns[1].addActionListener(new MyActionListener(CommunicationBtns[1], dataOn, dataOff));
-        CommunicationBtns[2].addActionListener(new MyActionListener(CommunicationBtns[2], wifiOn, wifiOff));
-        CommunicationBtns[3].addActionListener(new MyActionListener(CommunicationBtns[3], bluetoothOn, bluetoothOff));
+        CommunicationBtns[0].addActionListener(new ComActionListener(CommunicationBtns[0], airplaneOn, airplaneOff));
+        CommunicationBtns[1].addActionListener(new ComActionListener(CommunicationBtns[1], dataOn, dataOff));
+        CommunicationBtns[2].addActionListener(new ComActionListener(CommunicationBtns[2], wifiOn, wifiOff));
+        CommunicationBtns[3].addActionListener(new ComActionListener(CommunicationBtns[3], bluetoothOn, bluetoothOff));
+        JLabel music;
+        JButton audioBtn;
+        audios = Audios.getInstance();
+        if(!(audios.getClip().isRunning())) {
+             music = new JLabel("Not Playing");
+             music.setBounds(245, -20, 140, 100);
+             audioBtn = new JButton(playback);
+        }else {
+            music = new JLabel("Play Wake Up");
+            audioBtn = new JButton(stop);
+            music.setBounds(235, -20, 140, 100);
+        }
+        music.setOpaque(false);
+        music.setForeground(Color.WHITE);
+        music.setFont(new Font("Arial", Font.PLAIN, 18));
+
+
+        audioBtn.setOpaque(false);
+        audioBtn.setContentAreaFilled(false);
+        audioBtn.setBorderPainted(false);
+        audioBtn.setBounds(265, 65, 49, 49);
+        centerPanel.add(music);
+        centerPanel.add(audioBtn);
+
+
+        audioBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (audioBtn.getIcon() == playback) {
+                    audios.getClip().start();
+                    audioBtn.setIcon(stop);
+                    music.setText("Play Wake Up");
+                    music.setBounds(235, -20, 140, 100);
+                } else {
+                    audios.getClip().stop();
+                    audioBtn.setIcon(playback);
+                    music.setText("Not Playing");
+                    music.setBounds(245, -20, 140, 100);
+                }
+            }
+        });
+
         timeCount = new TimeCount();
         setFocusable(true);
         requestFocus();
@@ -93,25 +139,30 @@ public class QuickSettingPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 BlackPanel blackPanel = new BlackPanel();
                 Home home = (Home)getTopLevelAncestor();
-                home.remove(QuickSettingPanel.this);
-                home.setContentPane(blackPanel);
-                home.revalidate();
-                home.repaint();
+                if(home != null) {
+                    home.remove(QuickSettingPanel.this);
+                    home.setContentPane(blackPanel);
+                    home.revalidate();
+                    home.repaint();
+                }
             }
         };
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
+                timeCount.start(actionListener);
                 System.out.println("왜 키입력을 못받니");
             }
             @Override
             public void keyPressed(KeyEvent e) {
+                timeCount.start(actionListener);
                 System.out.println("이유를 알고싶어");
                 System.out.println("Key pressed: " + e.getKeyCode());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+                timeCount.start(actionListener);
                 System.out.println("나 너무 힘들어 ㅜㅜ");
             }
         });
@@ -119,7 +170,6 @@ public class QuickSettingPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                System.out.println("Timer reset");
                 startY = e.getY();
                 timeCount.start(actionListener);
             }
@@ -129,25 +179,14 @@ public class QuickSettingPanel extends JPanel {
                 if (startY - e.getY() > 100) {
                     MainPanel mainPanel = new MainPanel();
                     Home home = (Home)getTopLevelAncestor();
-                    home.remove(QuickSettingPanel.this);
                     home.setContentPane(mainPanel);
+                    home.remove(QuickSettingPanel.this);
                     home.revalidate();
                     home.repaint();
                 }
             }
         });
 
-
-        addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                timeCount.start(actionListener);
-                if (startY - e.getY() > 30) {
-
-                } else {
-                }
-            }
-        });
         timeCount.start(actionListener);
         setFocusable(true);
         requestFocus();
@@ -177,12 +216,12 @@ public class QuickSettingPanel extends JPanel {
         g.fillRoundRect(130, getHeight() - 8, 140, 8, 10, 10);
     }
 
-    private class MyActionListener implements ActionListener {
+    private class ComActionListener implements ActionListener {
         private final JButton button;
         private final ImageIcon onIcon;
         private final ImageIcon offIcon;
 
-        public MyActionListener(JButton button, ImageIcon onIcon, ImageIcon offIcon) {
+        public ComActionListener(JButton button, ImageIcon onIcon, ImageIcon offIcon) {
             this.button = button;
             this.onIcon = onIcon;
             this.offIcon = offIcon;
