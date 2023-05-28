@@ -1,13 +1,14 @@
 package iphone11;
 
+import iphone11.etc.Images;
+import iphone11.etc.TimeCount;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class QuickSettingPanel extends JPanel {
+    private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
     private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
@@ -23,6 +24,7 @@ public class QuickSettingPanel extends JPanel {
     private int startY;
     public QuickSettingPanel() {
         setLayout(new BorderLayout());
+
 
         // North part
         JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0 , 60));
@@ -70,7 +72,6 @@ public class QuickSettingPanel extends JPanel {
             CommunicationBtns[i].setOpaque(false);
             CommunicationBtns[i].setContentAreaFilled(false);
             CommunicationBtns[i].setBorderPainted(false);
-
             centerPanel.add(CommunicationBtns[i]);
         }
 
@@ -83,17 +84,48 @@ public class QuickSettingPanel extends JPanel {
         CommunicationBtns[1].addActionListener(new MyActionListener(CommunicationBtns[1], dataOn, dataOff));
         CommunicationBtns[2].addActionListener(new MyActionListener(CommunicationBtns[2], wifiOn, wifiOff));
         CommunicationBtns[3].addActionListener(new MyActionListener(CommunicationBtns[3], bluetoothOn, bluetoothOff));
+        timeCount = new TimeCount();
+        setFocusable(true);
+        requestFocus();
 
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home)getTopLevelAncestor();
+                home.remove(QuickSettingPanel.this);
+                home.setContentPane(blackPanel);
+                home.revalidate();
+                home.repaint();
+            }
+        };
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                System.out.println("왜 키입력을 못받니");
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("이유를 알고싶어");
+                System.out.println("Key pressed: " + e.getKeyCode());
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                System.out.println("나 너무 힘들어 ㅜㅜ");
+            }
+        });
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                System.out.println("Timer reset");
                 startY = e.getY();
+                timeCount.start(actionListener);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
                 if (startY - e.getY() > 100) {
                     MainPanel mainPanel = new MainPanel();
                     Home home = (Home)getTopLevelAncestor();
@@ -101,20 +133,24 @@ public class QuickSettingPanel extends JPanel {
                     home.setContentPane(mainPanel);
                     home.revalidate();
                     home.repaint();
-
                 }
             }
         });
 
+
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
+                timeCount.start(actionListener);
                 if (startY - e.getY() > 30) {
 
                 } else {
                 }
             }
         });
+        timeCount.start(actionListener);
+        setFocusable(true);
+        requestFocus();
     }
 
     @Override

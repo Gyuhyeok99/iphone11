@@ -13,6 +13,7 @@ public class Home extends JFrame  {
         setSize(400, 730);
         setVisible(true);
         homePanel.setBounds(0, 0, getWidth(), getHeight());
+
         c.add(homePanel);
     }
 

@@ -1,13 +1,17 @@
 package iphone11;
 
+import iphone11.etc.Images;
+import iphone11.etc.Time;
+import iphone11.etc.TimeCount;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 public class HomePanel extends JPanel {
+    private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
     private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
@@ -65,6 +69,22 @@ public class HomePanel extends JPanel {
         swipeUp.setForeground(Color.WHITE);
         swipeUp.setHorizontalAlignment(SwingConstants.CENTER);
         centerPanel.add(swipeUp);
+        setFocusable(true);
+        requestFocus();
+        timeCount = new TimeCount();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    home.remove(HomePanel.this);
+                    home.setContentPane(blackPanel);
+                    home.revalidate();
+                    home.repaint();
+                }
+            }
+        };
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -72,6 +92,7 @@ public class HomePanel extends JPanel {
                 startY = e.getY();
                 swipeUp.setText("Swipe up to unlock      ");
                 swipeUp.setBounds(110, 630, 200, 30);
+                timeCount.start(actionListener);
             }
 
             @Override
@@ -79,14 +100,15 @@ public class HomePanel extends JPanel {
                 swipeUp.setText("");
 
                 if (startY - e.getY() > 100) {
-                    QuickSettingPanel pwPanel = new QuickSettingPanel();
+                    PwPanel pwPanel = new PwPanel();
                     Home home = (Home)getTopLevelAncestor();
                     home.remove(HomePanel.this);
                     home.setContentPane(pwPanel);
                     home.revalidate();
                     home.repaint();
-
                 }
+
+
             }
         });
 
@@ -95,13 +117,22 @@ public class HomePanel extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 if (startY - e.getY() > 30) {
                     swipeUp.setText("Release to unlock      ");
-
                 } else {
                     swipeUp.setText("");
                 }
             }
         });
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                timeCount.start(actionListener);
+            }
+        });
+
+        timeCount.start(actionListener);
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

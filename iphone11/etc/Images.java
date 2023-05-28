@@ -1,4 +1,4 @@
-package iphone11;
+package iphone11.etc;
 
 import javax.swing.*;
 

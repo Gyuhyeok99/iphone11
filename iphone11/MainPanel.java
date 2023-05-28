@@ -1,11 +1,15 @@
 package iphone11;
 
+import iphone11.etc.Images;
+import iphone11.etc.Time;
+import iphone11.etc.TimeCount;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class MainPanel extends JPanel {
+    private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
     private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
@@ -80,14 +84,40 @@ public class MainPanel extends JPanel {
             southIcons[i].setBorderPainted(false);
             southPanel.add(southIcons[i]);
         }
+        setFocusable(true);
+        requestFocus();
 
+        timeCount = new TimeCount();
+
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home)getTopLevelAncestor();
+                if (home != null) {
+                    home.remove(MainPanel.this);
+                    home.setContentPane(blackPanel);
+                    home.revalidate();
+                    home.repaint();
+                }
+            }
+        };
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("Main 키입력좀 받아줘~");
+                timeCount.start(actionListener);
+            }
+        });
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                timeCount.start(actionListener);
                 startY = e.getY();
             }
             @Override
             public void mouseReleased(MouseEvent e) {
+                timeCount.start(actionListener);
                 int endY = e.getY();
                 if (endY > startY && startY <= 100) {
                     QuickSettingPanel quickSettingPanel = new QuickSettingPanel();
@@ -99,6 +129,7 @@ public class MainPanel extends JPanel {
                 }
             }
         });
+        timeCount.start(actionListener);
     }
 
     @Override

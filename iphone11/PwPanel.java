@@ -1,11 +1,15 @@
 package iphone11;
 
+import iphone11.etc.Images;
+import iphone11.etc.TimeCount;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PwPanel extends JPanel {
+    private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
     private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
@@ -127,6 +131,9 @@ public class PwPanel extends JPanel {
         JButton[] jBtns = new JButton[2];
         JButton emergencyBtn = new JButton("Emergency");
         JButton cancelBtn = new JButton("Cancel");
+
+        setFocusable(true);
+        requestFocus();
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
