@@ -10,6 +10,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MainPanel extends JPanel {
+    private final JPanel Calculator;
+    private final JPanel DrawingBoard;
+    private final JPanel Gallery;
+    private final JPanel Stopwatch;
+    private final JPanel[] appPanels;
+    private final JButton[] centerIcons;
     private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
@@ -23,6 +29,7 @@ public class MainPanel extends JPanel {
     private final ImageIcon calculator = Images.CALCULATOR;
     private final ImageIcon drawingBoard = Images.DRAWINGBOARD;
     private final ImageIcon stopWatch = Images.STOPWATCH;
+
     private int startY;
 
     private static MainPanel instance;
@@ -32,7 +39,7 @@ public class MainPanel extends JPanel {
         }
         return instance;
     }
-    private MainPanel() {
+    private MainPanel() throws Exception {
         setLayout(new BorderLayout());
         // North part
         JPanel northPanel = new JPanel(new FlowLayout());
@@ -61,16 +68,15 @@ public class MainPanel extends JPanel {
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
-        JButton[] centerIcons = new JButton[4];
+         centerIcons = new JButton[4];
         centerIcons[0] = new JButton(notepad);
         centerIcons[1] = new JButton(calculator);
         centerIcons[2] = new JButton(drawingBoard);
         centerIcons[3] = new JButton(stopWatch);
 
         for(int i = 0; i < centerIcons.length; i++) {
-            centerIcons[i].setOpaque(false);
-            centerIcons[i].setContentAreaFilled(false);
-            centerIcons[i].setBorderPainted(false);
+            DefaultSetting.btnSetting(centerIcons[i]);
+            centerIcons[i].addActionListener(new AppsActionListener());
             centerPanel.add(centerIcons[i]);
         }
 
@@ -134,8 +140,34 @@ public class MainPanel extends JPanel {
             }
         });
         timeCount.start(actionListener);
-    }
 
+        DrawingBoard = iphone11.apps.DrawingBoard.getInstance();
+        Calculator = iphone11.apps.Calculator.getInstance();
+        Gallery = iphone11.apps.Gallery.getInstance();
+        Stopwatch = iphone11.apps.Stopwatch.getInstance();
+        appPanels = new JPanel[]{ DrawingBoard,Calculator, Gallery, Stopwatch};
+    }
+    class AppsActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton btn = (JButton) e.getSource();
+
+            for (int i = 0; i < centerIcons.length; i++) {
+                if (btn == centerIcons[i]) {
+                    JPanel targetPanel = appPanels[i];
+                    if (targetPanel != null) {
+                        try {
+                            Home home = (Home) getTopLevelAncestor();
+                            DefaultSetting.setContentPane(home, targetPanel);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

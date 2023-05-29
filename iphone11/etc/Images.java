@@ -10,9 +10,21 @@ public class Images {
     private static final String BATTERY_IMAGE = PATH + "battery.jpg";
 
     //password
+    private static final String _0_0PNG = PATH + "password/0.png";
+    private static final String _1_0_PNG = PATH + "password/1.png";
+    private static final String _2_0_PNG = PATH + "password/2.png";
+    private static final String _3_0_PNG = PATH + "password/3.png";
+    private static final String _4_0_PNG = PATH + "password/4.png";
+    private static final String _5_0_PNG = PATH + "password/5.png";
+    private static final String _6_0_PNG = PATH + "password/6.png";
+    private static final String _7_0_PNG = PATH + "password/7.png";
+    private static final String _8_0_PNG = PATH + "password/8.png";
+    private static final String _9_0_PNG = PATH + "password/9.png";
     private static final String LOCK_IMAGE = PATH + "password/Lock.png";
     private static final String INPUT_PW_IMAGE = PATH + "password/inputPw.png";
     private static final String PW_IMAGE = PATH + "password/pw.png";
+
+    //app
     private static final String GALLERY_PNG = PATH + "appIcon/gallery.png";
     private static final String MESSAGE_PNG = PATH + "appIcon/message.png";
     private static final String PHONE_PNG = PATH + "appIcon/phone.png";
@@ -48,15 +60,50 @@ public class Images {
     private static final String PLAYBACK_PNG = PATH + "audios/playback.png";
     private static final String STOP_PNG = PATH + "audios/stop.png";
 
+    //calculator
+
+    private static final String _0_PNG = PATH + "calculator/0.png";
+    private static final String _1_PNG = PATH + "calculator/1.png";
+    private static final String _2_PNG = PATH + "calculator/2.png";
+    private static final String _3_PNG = PATH + "calculator/3.png";
+    private static final String _4_PNG = PATH + "calculator/4.png";
+    private static final String _5_PNG = PATH + "calculator/5.png";
+    private static final String _6_PNG = PATH + "calculator/6.png";
+    private static final String _7_PNG = PATH + "calculator/7.png";
+    private static final String _8_PNG = PATH + "calculator/8.png";
+    private static final String _9_PNG = PATH + "calculator/9.png";
+    private static final String AC_PNG = PATH + "calculator/AC.png";
+    private static final String DEVIDE_100_PNG = PATH + "calculator/devide100.png";
+    private static final String DIVISION_PNG = PATH + "calculator/division.png";
+    private static final String EQUAL_PNG = PATH + "calculator/equal.png";
+    private static final String MINORITY_POINT_PNG = PATH + "calculator/minorityPoint.png";
+    private static final String MINUS_PNG = PATH + "calculator/minus.png";
+    private static final String MULTIPLICATION_PNG = PATH + "calculator/multiplication.png";
+    private static final String PLUS_PNG = PATH + "calculator/plus.png";
+    private static final String PLUS_MINUS_PNG = PATH + "calculator/plusMinus.png";
+
+
 
     public static final ImageIcon BACKGROUND = new ImageIcon(BACKGROUND_IMAGE);
     public static final ImageIcon TELECOMMUNICATIONS = new ImageIcon(TELECOMMUNICATIONS_IMAGE);
     public static final ImageIcon BATTERY = new ImageIcon(BATTERY_IMAGE);
 
     //password
+    public static final ImageIcon _0_0 = new ImageIcon(_0_0PNG);
+    public static final ImageIcon _1_0 = new ImageIcon(_1_0_PNG);
+    public static final ImageIcon _2_0 = new ImageIcon(_2_0_PNG);
+    public static final ImageIcon _3_0 = new ImageIcon(_3_0_PNG);
+    public static final ImageIcon _4_0 = new ImageIcon(_4_0_PNG);
+    public static final ImageIcon _5_0 = new ImageIcon(_5_0_PNG);
+    public static final ImageIcon _6_0 = new ImageIcon(_6_0_PNG);
+    public static final ImageIcon _7_0 = new ImageIcon(_7_0_PNG);
+    public static final ImageIcon _8_0 = new ImageIcon(_8_0_PNG);
+    public static final ImageIcon _9_0 = new ImageIcon(_9_0_PNG);
     public static final ImageIcon LOCK = new ImageIcon(LOCK_IMAGE);
     public static final ImageIcon INPUT_PW = new ImageIcon(INPUT_PW_IMAGE);
     public static final ImageIcon PW = new ImageIcon(PW_IMAGE);
+
+    //app
     public static final ImageIcon GALLERY = new ImageIcon(GALLERY_PNG);
     public static final ImageIcon MESSAGE = new ImageIcon(MESSAGE_PNG);
     public static final ImageIcon PHONE = new ImageIcon(PHONE_PNG);
@@ -90,5 +137,27 @@ public class Images {
     //audio
     public static final ImageIcon PLAYBACK = new ImageIcon(PLAYBACK_PNG);
     public static final ImageIcon STOP = new ImageIcon(STOP_PNG);
+
+    //calculator
+    public static final ImageIcon _0 = new ImageIcon(_0_PNG);
+    public static final ImageIcon _1 = new ImageIcon(_1_PNG);
+    public static final ImageIcon _2 = new ImageIcon(_2_PNG);
+    public static final ImageIcon _3 = new ImageIcon(_3_PNG);
+    public static final ImageIcon _4 = new ImageIcon(_4_PNG);
+    public static final ImageIcon _5 = new ImageIcon(_5_PNG);
+    public static final ImageIcon _6 = new ImageIcon(_6_PNG);
+    public static final ImageIcon _7 = new ImageIcon(_7_PNG);
+    public static final ImageIcon _8 = new ImageIcon(_8_PNG);
+    public static final ImageIcon _9 = new ImageIcon(_9_PNG);
+    public static final ImageIcon AC = new ImageIcon(AC_PNG);
+    public static final ImageIcon DEVIDE_100 = new ImageIcon(DEVIDE_100_PNG);
+    public static final ImageIcon DIVISION = new ImageIcon(DIVISION_PNG);
+    public static final ImageIcon EQUAL = new ImageIcon(EQUAL_PNG);
+    public static final ImageIcon MINORITY_POINT = new ImageIcon(MINORITY_POINT_PNG);
+    public static final ImageIcon MINUS = new ImageIcon(MINUS_PNG);
+    public static final ImageIcon MULTIPLICATION = new ImageIcon(MULTIPLICATION_PNG);
+    public static final ImageIcon PLUS = new ImageIcon(PLUS_PNG);
+    public static final ImageIcon PLUS_MINUS = new ImageIcon(PLUS_MINUS_PNG);
+
 
 }

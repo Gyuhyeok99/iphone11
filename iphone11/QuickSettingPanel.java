@@ -277,6 +277,7 @@ public class QuickSettingPanel extends JPanel {
         g.fillRoundRect(RIGHT_X + INTERVAL, BOTTOM_Y, SMALL_WIDTH, BIG_HEIGHT, ARC, ARC);
 
         g.setColor(Color.white);
+        g.fillRoundRect(310, 500, 50, 50, 10, 10);
         g.fillRoundRect(130, getHeight() - 8, 140, 8, 10, 10);
     }
 

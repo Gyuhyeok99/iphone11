@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 public class Time {
     public static JLabel getHourMinute() {
         JLabel hourMinute = new JLabel();
-        hourMinute.setFont(new Font("Arial", Font.PLAIN, 60));
+        hourMinute.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 60));
         hourMinute.setForeground(Color.WHITE);
         hourMinute.setHorizontalAlignment(SwingConstants.CENTER);
         updateHourMinute(hourMinute);
