@@ -27,6 +27,15 @@ public class QuickSettingPanel extends JPanel {
     private final ImageIcon fixOff = Images.FIX_OFF;
     private final ImageIcon playback = Images.PLAYBACK;
     private final ImageIcon stop = Images.STOP;
+    private final ImageIcon mirroring = Images.MIRRORING;
+    private final ImageIcon noDisturbance = Images.NO_DISTURBANCE;
+    private final ImageIcon brightness = Images.BRIGHTNESS;
+    private final ImageIcon volume = Images.VOLUME;
+    private final ImageIcon flashlightOn = Images.FLASHLIGHT_ON;
+    private final ImageIcon flashlightOff = Images.FLASHLIGHT_OFF;
+    private final ImageIcon stopwatch2 = Images.STOPWATCH2;
+    private final ImageIcon calculator2 = Images.CALCULATOR2;
+    private final ImageIcon camera = Images.CAMERA;
     private final Audios audios;
 
     private int startY;
@@ -78,30 +87,35 @@ public class QuickSettingPanel extends JPanel {
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
-        JButton[] CommunicationBtns = new JButton[5];
-        CommunicationBtns[0] = new JButton(airplaneOff);
-        CommunicationBtns[1] = new JButton(dataOn);
-        CommunicationBtns[2] = new JButton(wifiOff);
-        CommunicationBtns[3] = new JButton(bluetoothOff);
-        CommunicationBtns[4] = new JButton(fixOff);
+        //Communication button related
+        JButton[] onOffBtns = new JButton[6];
+        onOffBtns[0] = new JButton(airplaneOff);
+        onOffBtns[1] = new JButton(dataOn);
+        onOffBtns[2] = new JButton(wifiOff);
+        onOffBtns[3] = new JButton(bluetoothOff);
+        onOffBtns[4] = new JButton(fixOff);
+        onOffBtns[5] = new JButton(flashlightOff);
 
-        for(int i = 0; i < CommunicationBtns.length; i++) {
-            DefaultSetting.btnSetting(CommunicationBtns[i]);
-            centerPanel.add(CommunicationBtns[i]);
+        for(int i = 0; i < onOffBtns.length; i++) {
+            DefaultSetting.btnSetting(onOffBtns[i]);
+            centerPanel.add(onOffBtns[i]);
         }
 
-        CommunicationBtns[0].setBounds(45, 0, 60, 60);
-        CommunicationBtns[1].setBounds(115, 0, 60, 60);
-        CommunicationBtns[2].setBounds(45, 65, 60, 60);
-        CommunicationBtns[3].setBounds(115, 65, 60, 60);
-        CommunicationBtns[4].setBounds(30, 158, 70, 70);
+        onOffBtns[0].setBounds(45, 0, 60, 60);
+        onOffBtns[1].setBounds(115, 0, 60, 60);
+        onOffBtns[2].setBounds(45, 65, 60, 60);
+        onOffBtns[3].setBounds(115, 65, 60, 60);
+        onOffBtns[4].setBounds(30, 158, 70, 70);
+        onOffBtns[5].setBounds(30, 337, 71, 72);
 
-        CommunicationBtns[0].addActionListener(new ComActionListener(CommunicationBtns[0], airplaneOn, airplaneOff));
-        CommunicationBtns[1].addActionListener(new ComActionListener(CommunicationBtns[1], dataOn, dataOff));
-        CommunicationBtns[2].addActionListener(new ComActionListener(CommunicationBtns[2], wifiOn, wifiOff));
-        CommunicationBtns[3].addActionListener(new ComActionListener(CommunicationBtns[3], bluetoothOn, bluetoothOff));
-        CommunicationBtns[4].addActionListener(new ComActionListener(CommunicationBtns[4], fixOn, fixOff));
+        onOffBtns[0].addActionListener(new onOffActionListener(onOffBtns[0], airplaneOn, airplaneOff));
+        onOffBtns[1].addActionListener(new onOffActionListener(onOffBtns[1], dataOn, dataOff));
+        onOffBtns[2].addActionListener(new onOffActionListener(onOffBtns[2], wifiOn, wifiOff));
+        onOffBtns[3].addActionListener(new onOffActionListener(onOffBtns[3], bluetoothOn, bluetoothOff));
+        onOffBtns[4].addActionListener(new onOffActionListener(onOffBtns[4], fixOn, fixOff));
+        onOffBtns[5].addActionListener(new onOffActionListener(onOffBtns[5], flashlightOn,flashlightOff));
 
+        //music-related
         JLabel music;
         JButton audioBtn;
         audios = Audios.getInstance();
@@ -118,13 +132,55 @@ public class QuickSettingPanel extends JPanel {
         music.setForeground(Color.WHITE);
         music.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
-
         audioBtn.setOpaque(false);
         audioBtn.setContentAreaFilled(false);
         audioBtn.setBorderPainted(false);
         audioBtn.setBounds(265, 65, 49, 49);
         centerPanel.add(music);
         centerPanel.add(audioBtn);
+
+        //About screen mirroring
+        JButton mirroringBtn = new JButton(mirroring);
+        DefaultSetting.btnSetting(mirroringBtn);
+        mirroringBtn.setBounds(128, 175, 54, 40);
+        centerPanel.add(mirroringBtn);
+
+        //Regarding the Do Not Disturb mode
+        JButton disturbBtn = new JButton(noDisturbance);
+        DefaultSetting.btnSetting(disturbBtn);
+        disturbBtn.setBounds(45, 253, 60, 60);
+        centerPanel.add(disturbBtn);
+
+        JLabel focus = new JLabel("Focus");
+        focus.setForeground(Color.WHITE);
+        focus.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
+        focus.setBounds(115, 235, 100, 100);
+        centerPanel.add(focus);
+
+        //volume and bright
+        JLabel vo = new JLabel(volume);
+        JLabel br = new JLabel(brightness);
+        br.setBounds(225 ,260, 33, 40);
+        vo.setBounds(320 ,260, 33, 40);
+        centerPanel.add(vo);
+        centerPanel.add(br);
+
+        //Button to another screen
+        JButton[] screenBtns = new JButton[3];
+        screenBtns[0] = new JButton(stopwatch2);
+        screenBtns[1] = new JButton(calculator2);
+        screenBtns[2] = new JButton(camera);
+        int screenX = 122, screenY = 337, screenWidth = 71, screenHeight = 72;
+        for(int i = 0; i < screenBtns.length; i++) {
+            DefaultSetting.btnSetting(screenBtns[i]);
+            centerPanel.add(screenBtns[i]);
+            screenBtns[i].setBounds(screenX + i * 87, screenY, screenWidth, screenHeight);
+        }
+
+
+
+
+
 
         audioBtn.addActionListener(new ActionListener() {
             @Override
@@ -219,21 +275,17 @@ public class QuickSettingPanel extends JPanel {
         g.fillRoundRect(LEFT_X, BOTTOM_Y + INTERVAL, BIG_WIDTH, SMALL_HEIGHT, ARC, ARC);
         g.fillRoundRect(RIGHT_X, BOTTOM_Y, SMALL_WIDTH, BIG_HEIGHT, ARC, ARC);
         g.fillRoundRect(RIGHT_X + INTERVAL, BOTTOM_Y, SMALL_WIDTH, BIG_HEIGHT, ARC, ARC);
-        g.fillRoundRect(LEFT_X, BOTTOM_Y + 2*INTERVAL, SMALL_WIDTH, SMALL_HEIGHT, ARC, ARC);
-        g.fillRoundRect(LEFT_X + INTERVAL, BOTTOM_Y + 2*INTERVAL, SMALL_WIDTH, SMALL_HEIGHT, ARC, ARC);
-        g.fillRoundRect(RIGHT_X, BOTTOM_Y + 2*INTERVAL, SMALL_WIDTH, SMALL_HEIGHT, ARC, ARC);
-        g.fillRoundRect(RIGHT_X + INTERVAL, BOTTOM_Y + 2*INTERVAL, SMALL_WIDTH, SMALL_HEIGHT, ARC, ARC);
 
         g.setColor(Color.white);
         g.fillRoundRect(130, getHeight() - 8, 140, 8, 10, 10);
     }
 
-    private class ComActionListener implements ActionListener {
+    private class onOffActionListener implements ActionListener {
         private final JButton btn;
         private final ImageIcon on;
         private final ImageIcon off;
 
-        public ComActionListener(JButton btn, ImageIcon on, ImageIcon off) {
+        public onOffActionListener(JButton btn, ImageIcon on, ImageIcon off) {
             this.btn = btn;
             this.on = on;
             this.off = off;
