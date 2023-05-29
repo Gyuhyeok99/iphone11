@@ -1,6 +1,7 @@
 package iphone11;
 
 import iphone11.etc.Audios;
+import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
 import iphone11.etc.TimeCount;
 
@@ -49,16 +50,16 @@ public class QuickSettingPanel extends JPanel {
         JLabel whiteSpace = new JLabel("                                 ");
 
         JLabel lg = new JLabel("LG U+ ");
-        lg.setFont(new Font("Arial", Font.PLAIN, 18));
+        lg.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
         lg.setForeground(Color.white);
 
         JLabel lte = new JLabel("LTE");
         lte.setForeground(Color.WHITE);
-        lte.setFont(new Font("Arial", Font.PLAIN, 18));
+        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
         JLabel intBattery = new JLabel("100%");
         intBattery.setForeground(Color.WHITE);
-        intBattery.setFont(new Font("Arial", Font.PLAIN, 18));
+        intBattery.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
 
         JLabel tel = new JLabel(telecommunications);
@@ -85,9 +86,7 @@ public class QuickSettingPanel extends JPanel {
         CommunicationBtns[4] = new JButton(fixOff);
 
         for(int i = 0; i < CommunicationBtns.length; i++) {
-            CommunicationBtns[i].setOpaque(false);
-            CommunicationBtns[i].setContentAreaFilled(false);
-            CommunicationBtns[i].setBorderPainted(false);
+            DefaultSetting.btnSetting(CommunicationBtns[i]);
             centerPanel.add(CommunicationBtns[i]);
         }
 
@@ -117,7 +116,7 @@ public class QuickSettingPanel extends JPanel {
         }
         music.setOpaque(false);
         music.setForeground(Color.WHITE);
-        music.setFont(new Font("Arial", Font.PLAIN, 18));
+        music.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
 
         audioBtn.setOpaque(false);
@@ -154,10 +153,7 @@ public class QuickSettingPanel extends JPanel {
                 BlackPanel blackPanel = new BlackPanel();
                 Home home = (Home)getTopLevelAncestor();
                 if(home != null) {
-                    home.remove(QuickSettingPanel.this);
-                    home.setContentPane(blackPanel);
-                    home.revalidate();
-                    home.repaint();
+                    DefaultSetting.setContentPane(home, blackPanel);
                 }
             }
         };
@@ -198,10 +194,7 @@ public class QuickSettingPanel extends JPanel {
                         throw new RuntimeException(ex);
                     }
                     Home home = (Home)getTopLevelAncestor();
-                    home.setContentPane(mainPanel);
-                    //home.remove(QuickSettingPanel.this);
-                    home.revalidate();
-                    home.repaint();
+                    DefaultSetting.setContentPane(home, mainPanel);
                 }
             }
         });

@@ -1,5 +1,7 @@
 package iphone11;
 
+import iphone11.etc.DefaultSetting;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -44,9 +46,6 @@ public class BlackPanel extends JPanel {
     private void goHomePanel() throws Exception {
         HomePanel homePanel = HomePanel.getInstance();
         Home home = (Home)getTopLevelAncestor();
-        //home.remove(BlackPanel.this);
-        home.setContentPane(homePanel);
-        home.revalidate();
-        home.repaint();
+        DefaultSetting.setContentPane(home, homePanel);
     }
 }

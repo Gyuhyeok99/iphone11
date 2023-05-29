@@ -1,5 +1,6 @@
 package iphone11;
 
+import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
 import iphone11.etc.Time;
 import iphone11.etc.TimeCount;
@@ -39,12 +40,12 @@ public class MainPanel extends JPanel {
         add(northPanel, BorderLayout.NORTH);
 
         JLabel minuteHour = Time.getHourMinute();
-        minuteHour.setFont(new Font("Arial", Font.PLAIN, 22));
+        minuteHour.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 22));
         JLabel whiteSpace = new JLabel("                                                ");
 
         JLabel lte = new JLabel("LTE");
         lte.setForeground(Color.WHITE);
-        lte.setFont(new Font("Arial", Font.PLAIN, 18));
+        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
         JLabel tel = new JLabel(telecommunications);
         JLabel bat = new JLabel(battery);
@@ -85,9 +86,7 @@ public class MainPanel extends JPanel {
         southIcons[3] = new JButton(setting);
 
         for (int i = 0; i < southIcons.length; i++) {
-            southIcons[i].setOpaque(false);
-            southIcons[i].setContentAreaFilled(false);
-            southIcons[i].setBorderPainted(false);
+            DefaultSetting.btnSetting(southIcons[i]);
             southPanel.add(southIcons[i]);
         }
         setFocusable(true);
@@ -101,10 +100,7 @@ public class MainPanel extends JPanel {
                 BlackPanel blackPanel = new BlackPanel();
                 Home home = (Home)getTopLevelAncestor();
                 if (home != null) {
-                    //home.remove(MainPanel.this);
-                    home.setContentPane(blackPanel);
-                    home.revalidate();
-                    home.repaint();
+                    DefaultSetting.setContentPane(home, blackPanel);
                 }
             }
         };
@@ -133,10 +129,7 @@ public class MainPanel extends JPanel {
                         throw new RuntimeException(ex);
                     }
                     Home home = (Home) getTopLevelAncestor();
-                    //home.remove(MainPanel.this);
-                    home.setContentPane(quickSettingPanel);
-                    home.revalidate();
-                    home.repaint();
+                    DefaultSetting.setContentPane(home, quickSettingPanel);
                 }
             }
         });

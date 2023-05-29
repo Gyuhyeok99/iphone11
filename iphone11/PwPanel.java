@@ -1,5 +1,6 @@
 package iphone11;
 
+import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
 import iphone11.etc.TimeCount;
 
@@ -27,13 +28,13 @@ public class PwPanel extends JPanel {
         add(northPanel, BorderLayout.NORTH);
 
         JLabel lg = new JLabel("LG U+");
-        lg.setFont(new Font("Arial", Font.PLAIN, 18));
+        lg.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
         lg.setForeground(Color.white);
         JLabel whiteSpace = new JLabel("                                                ");
 
         JLabel lte = new JLabel("LTE");
         lte.setForeground(Color.WHITE);
-        lte.setFont(new Font("Arial", Font.PLAIN, 18));
+        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
         JLabel tel = new JLabel(telecommunications);
         JLabel bat = new JLabel(battery);
@@ -58,7 +59,7 @@ public class PwPanel extends JPanel {
         passcode.setForeground(Color.WHITE);
         passcode.setOpaque(false);
         passcode.setHorizontalAlignment(SwingConstants.CENTER);
-        passcode.setFont(new Font("Arial", Font.PLAIN, 20));
+        passcode.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 20));
         passcode.setBounds(100, 80, 200, 30);
         centerPanel.add(passcode);
 
@@ -79,9 +80,7 @@ public class PwPanel extends JPanel {
             String num = "images/password/" + i + ".png";
             numImgs[i] = new ImageIcon(num);
             numBtns[i] = new JButton(numImgs[i]);
-            numBtns[i].setOpaque(false);
-            numBtns[i].setContentAreaFilled(false);
-            numBtns[i].setBorderPainted(false);
+            DefaultSetting.btnSetting(numBtns[i]);
             numBtns[i].addActionListener(new ActionListener() {
 
                     @Override
@@ -103,9 +102,7 @@ public class PwPanel extends JPanel {
                                     }
                                     Home home = (Home)getTopLevelAncestor();
                                     home.remove(PwPanel.this);
-                                    home.setContentPane(mainPanel);
-                                    home.revalidate();
-                                    home.repaint();
+                                    DefaultSetting.setContentPane(home, mainPanel);
                                 }
                                 break;
                             }
@@ -142,17 +139,15 @@ public class PwPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 count = 0;
-                HomePanel pwPanel = null;
+                HomePanel homePanel = null;
                 try {
-                    pwPanel = HomePanel.getInstance();
+                    homePanel = HomePanel.getInstance();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
                 Home home = (Home)getTopLevelAncestor();
                 home.remove(PwPanel.this);
-                home.setContentPane(pwPanel);
-                home.revalidate();
-                home.repaint();
+                DefaultSetting.setContentPane(home, homePanel);
             }
         });
 
@@ -165,14 +160,12 @@ public class PwPanel extends JPanel {
 
         for (int i = 0; i < jBtns.length; i++) {
             jBtns[i].setForeground(Color.white);
-            jBtns[i].setOpaque(false);
-            jBtns[i].setContentAreaFilled(false);
-            jBtns[i].setBorderPainted(false);
-            jBtns[i].setFont(new Font("Arial", Font.PLAIN, 15));
+            DefaultSetting.btnSetting(jBtns[i]);
+            jBtns[i].setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 15));
         }
 
         JLabel swipe = new JLabel();
-        swipe.setFont(new Font("Arial", Font.PLAIN, 15));
+        swipe.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 15));
         swipe.setForeground(Color.WHITE);
         swipe.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -186,9 +179,7 @@ public class PwPanel extends JPanel {
                 Home home = (Home)getTopLevelAncestor();
                 if(home != null) {
                     home.remove(PwPanel.this);
-                    home.setContentPane(blackPanel);
-                    home.revalidate();
-                    home.repaint();
+                    DefaultSetting.setContentPane(home, blackPanel);
                 }
             }
         };

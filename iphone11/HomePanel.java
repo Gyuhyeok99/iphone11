@@ -1,5 +1,6 @@
 package iphone11;
 
+import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
 import iphone11.etc.Time;
 import iphone11.etc.TimeCount;
@@ -36,13 +37,13 @@ public class HomePanel extends JPanel {
         add(northPanel, BorderLayout.NORTH);
 
         JLabel lg = new JLabel("LG U+");
-        lg.setFont(new Font("Arial", Font.PLAIN, 18));
+        lg.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
         lg.setForeground(Color.white);
         JLabel whiteSpace = new JLabel("                                                ");
 
         JLabel lte = new JLabel("LTE");
         lte.setForeground(Color.WHITE);
-        lte.setFont(new Font("Arial", Font.PLAIN, 18));
+        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
 
         JLabel tel = new JLabel(telecommunications);
         JLabel bat = new JLabel(battery);
@@ -66,18 +67,20 @@ public class HomePanel extends JPanel {
         centerPanel.add(hourMinute);
 
         dayMonth = new JLabel();
-        dayMonth.setFont(new Font("Arial", Font.PLAIN, 15));
+        dayMonth.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 15));
         dayMonth.setForeground(Color.WHITE);
         dayMonth.setHorizontalAlignment(SwingConstants.CENTER);
         centerPanel.add(dayMonth);
 
         JLabel swipeUp = new JLabel();
-        swipeUp.setFont(new Font("Arial", Font.PLAIN, 15));
+        swipeUp.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 15));
         swipeUp.setForeground(Color.WHITE);
         swipeUp.setHorizontalAlignment(SwingConstants.CENTER);
         centerPanel.add(swipeUp);
+
         setFocusable(true);
         requestFocus();
+
         timeCount = new TimeCount();
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -85,10 +88,7 @@ public class HomePanel extends JPanel {
                 BlackPanel blackPanel = new BlackPanel();
                 Home home = (Home) getTopLevelAncestor();
                 if (home != null) {
-                    home.remove(HomePanel.this);
-                    home.setContentPane(blackPanel);
-                    home.revalidate();
-                    home.repaint();
+                   DefaultSetting.setContentPane(home, blackPanel);
                 }
             }
         };
@@ -109,10 +109,7 @@ public class HomePanel extends JPanel {
                 if (startY - e.getY() > 100) {
                     PwPanel pwPanel = new PwPanel();
                     Home home = (Home)getTopLevelAncestor();
-                    home.remove(HomePanel.this);
-                    home.setContentPane(pwPanel);
-                    home.revalidate();
-                    home.repaint();
+                    DefaultSetting.setContentPane(home, pwPanel);
                 }
 
 
