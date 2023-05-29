@@ -17,14 +17,22 @@ public class BlackPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                goHomePanel();
+                try {
+                    goHomePanel();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 System.out.println("키입력좀 제발 이해해줘~~");
-                goHomePanel();
+                try {
+                    goHomePanel();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -33,10 +41,10 @@ public class BlackPanel extends JPanel {
 
     }
 
-    private void goHomePanel() {
-        HomePanel homePanel = new HomePanel();
+    private void goHomePanel() throws Exception {
+        HomePanel homePanel = HomePanel.getInstance();
         Home home = (Home)getTopLevelAncestor();
-        home.remove(BlackPanel.this);
+        //home.remove(BlackPanel.this);
         home.setContentPane(homePanel);
         home.revalidate();
         home.repaint();

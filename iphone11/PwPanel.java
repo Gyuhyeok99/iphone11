@@ -95,7 +95,12 @@ public class PwPanel extends JPanel {
                                 count++;
                                 if (count == 6) {
                                     count = 0;
-                                    MainPanel mainPanel = new MainPanel();
+                                    MainPanel mainPanel = null;
+                                    try {
+                                        mainPanel = MainPanel.getInstance();
+                                    } catch (Exception ex) {
+                                        throw new RuntimeException(ex);
+                                    }
                                     Home home = (Home)getTopLevelAncestor();
                                     home.remove(PwPanel.this);
                                     home.setContentPane(mainPanel);
@@ -137,7 +142,12 @@ public class PwPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 count = 0;
-                HomePanel pwPanel = new HomePanel();
+                HomePanel pwPanel = null;
+                try {
+                    pwPanel = HomePanel.getInstance();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 Home home = (Home)getTopLevelAncestor();
                 home.remove(PwPanel.this);
                 home.setContentPane(pwPanel);

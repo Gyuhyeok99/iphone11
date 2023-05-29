@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class Home extends JFrame  {
     private final Container c = getContentPane();
-    private final HomePanel homePanel = new HomePanel();
-    public Home() {
+    private final HomePanel homePanel = HomePanel.getInstance();
+    public Home() throws Exception {
         setTitle("iphone11");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -17,7 +17,7 @@ public class Home extends JFrame  {
         c.add(homePanel);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         new Home();
     }
 }

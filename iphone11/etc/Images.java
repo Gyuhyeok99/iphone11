@@ -27,8 +27,11 @@ public class Images {
     private static final String DATA_OFF_PNG = PATH + "setting/dataOff.png";
     private static final String WIFI_ON_PNG = PATH + "setting/wifiOn.png";
     private static final String WIFI_OFF_PNG = PATH + "setting/wifiOff.png";
+    private static final String FIX_ON_PNG = PATH + "setting/fixOn.png";
+    private static final String FIX_OFF_PNG = PATH + "setting/fixOff.png";
     private static final String PLAYBACK_PNG = PATH + "audios/playback.png";
     private static final String STOP_PNG = PATH + "audios/stop.png";
+
 
     public static final ImageIcon BACKGROUND = new ImageIcon(BACKGROUND_IMAGE);
     public static final ImageIcon TELECOMMUNICATIONS = new ImageIcon(TELECOMMUNICATIONS_IMAGE);
@@ -52,6 +55,8 @@ public class Images {
     public static final ImageIcon DATA_OFF = new ImageIcon(DATA_OFF_PNG);
     public static final ImageIcon WIFI_ON = new ImageIcon(WIFI_ON_PNG);
     public static final ImageIcon WIFI_OFF = new ImageIcon(WIFI_OFF_PNG);
+    public static final ImageIcon FIX_ON = new ImageIcon(FIX_ON_PNG);
+    public static final ImageIcon FIX_OFF = new ImageIcon(FIX_OFF_PNG);
     public static final ImageIcon PLAYBACK = new ImageIcon(PLAYBACK_PNG);
     public static final ImageIcon STOP = new ImageIcon(STOP_PNG);
 

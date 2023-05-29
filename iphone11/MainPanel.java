@@ -24,8 +24,14 @@ public class MainPanel extends JPanel {
     private final ImageIcon stopWatch = Images.STOPWATCH;
     private int startY;
 
-
-    public MainPanel() {
+    private static MainPanel instance;
+    public static MainPanel getInstance() throws Exception {
+        if (instance == null) {
+            instance = new MainPanel();
+        }
+        return instance;
+    }
+    private MainPanel() {
         setLayout(new BorderLayout());
         // North part
         JPanel northPanel = new JPanel(new FlowLayout());
@@ -95,7 +101,7 @@ public class MainPanel extends JPanel {
                 BlackPanel blackPanel = new BlackPanel();
                 Home home = (Home)getTopLevelAncestor();
                 if (home != null) {
-                    home.remove(MainPanel.this);
+                    //home.remove(MainPanel.this);
                     home.setContentPane(blackPanel);
                     home.revalidate();
                     home.repaint();
@@ -122,12 +128,12 @@ public class MainPanel extends JPanel {
                 if (endY > startY && startY <= 100) {
                     QuickSettingPanel quickSettingPanel = null;
                     try {
-                        quickSettingPanel = new QuickSettingPanel();
+                        quickSettingPanel = QuickSettingPanel.getInstance();
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
                     Home home = (Home) getTopLevelAncestor();
-                    home.remove(MainPanel.this);
+                    //home.remove(MainPanel.this);
                     home.setContentPane(quickSettingPanel);
                     home.revalidate();
                     home.repaint();

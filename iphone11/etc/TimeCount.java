@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class TimeCount {
-    private final int millisecond = 100000;
+    private final int millisecond = 30000;
     private Timer timer;
     public TimeCount(){}
     public void start(ActionListener actionListener) {

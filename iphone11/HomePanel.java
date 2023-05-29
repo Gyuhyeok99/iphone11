@@ -20,8 +20,15 @@ public class HomePanel extends JPanel {
     private final JLabel dayMonth;
     private final JLabel hourMinute;
     private int startY;
+    private static HomePanel instance;
+    public static HomePanel getInstance() throws Exception {
+        if (instance == null) {
+            instance = new HomePanel();
+        }
+        return instance;
+    }
 
-    public HomePanel() {
+    private HomePanel() {
         setLayout(new BorderLayout());
         // North part
         JPanel northPanel = new JPanel(new FlowLayout());

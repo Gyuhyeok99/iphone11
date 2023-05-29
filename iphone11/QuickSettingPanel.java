@@ -22,11 +22,22 @@ public class QuickSettingPanel extends JPanel {
     private final ImageIcon dataOff = Images.DATA_OFF;
     private final ImageIcon wifiOn = Images.WIFI_ON;
     private final ImageIcon wifiOff = Images.WIFI_OFF;
+    private final ImageIcon fixOn = Images.FIX_ON;
+    private final ImageIcon fixOff = Images.FIX_OFF;
     private final ImageIcon playback = Images.PLAYBACK;
     private final ImageIcon stop = Images.STOP;
     private final Audios audios;
+
     private int startY;
-    public QuickSettingPanel() throws Exception {
+    private static QuickSettingPanel instance;
+
+    public static QuickSettingPanel getInstance() throws Exception {
+        if (instance == null) {
+            instance = new QuickSettingPanel();
+        }
+        return instance;
+    }
+    private QuickSettingPanel() throws Exception {
         setLayout(new BorderLayout());
 
 
@@ -66,11 +77,12 @@ public class QuickSettingPanel extends JPanel {
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
-        JButton[] CommunicationBtns = new JButton[4];
+        JButton[] CommunicationBtns = new JButton[5];
         CommunicationBtns[0] = new JButton(airplaneOff);
         CommunicationBtns[1] = new JButton(dataOn);
         CommunicationBtns[2] = new JButton(wifiOff);
         CommunicationBtns[3] = new JButton(bluetoothOff);
+        CommunicationBtns[4] = new JButton(fixOff);
 
         for(int i = 0; i < CommunicationBtns.length; i++) {
             CommunicationBtns[i].setOpaque(false);
@@ -83,11 +95,14 @@ public class QuickSettingPanel extends JPanel {
         CommunicationBtns[1].setBounds(115, 0, 60, 60);
         CommunicationBtns[2].setBounds(45, 65, 60, 60);
         CommunicationBtns[3].setBounds(115, 65, 60, 60);
+        CommunicationBtns[4].setBounds(30, 158, 70, 70);
 
         CommunicationBtns[0].addActionListener(new ComActionListener(CommunicationBtns[0], airplaneOn, airplaneOff));
         CommunicationBtns[1].addActionListener(new ComActionListener(CommunicationBtns[1], dataOn, dataOff));
         CommunicationBtns[2].addActionListener(new ComActionListener(CommunicationBtns[2], wifiOn, wifiOff));
         CommunicationBtns[3].addActionListener(new ComActionListener(CommunicationBtns[3], bluetoothOn, bluetoothOff));
+        CommunicationBtns[4].addActionListener(new ComActionListener(CommunicationBtns[4], fixOn, fixOff));
+
         JLabel music;
         JButton audioBtn;
         audios = Audios.getInstance();
@@ -111,7 +126,6 @@ public class QuickSettingPanel extends JPanel {
         audioBtn.setBounds(265, 65, 49, 49);
         centerPanel.add(music);
         centerPanel.add(audioBtn);
-
 
         audioBtn.addActionListener(new ActionListener() {
             @Override
@@ -177,10 +191,15 @@ public class QuickSettingPanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (startY - e.getY() > 100) {
-                    MainPanel mainPanel = new MainPanel();
+                    MainPanel mainPanel = null;
+                    try {
+                        mainPanel = MainPanel.getInstance();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     Home home = (Home)getTopLevelAncestor();
                     home.setContentPane(mainPanel);
-                    home.remove(QuickSettingPanel.this);
+                    //home.remove(QuickSettingPanel.this);
                     home.revalidate();
                     home.repaint();
                 }
@@ -217,18 +236,23 @@ public class QuickSettingPanel extends JPanel {
     }
 
     private class ComActionListener implements ActionListener {
-        private final JButton button;
-        private final ImageIcon onIcon;
-        private final ImageIcon offIcon;
+        private final JButton btn;
+        private final ImageIcon on;
+        private final ImageIcon off;
 
-        public ComActionListener(JButton button, ImageIcon onIcon, ImageIcon offIcon) {
-            this.button = button;
-            this.onIcon = onIcon;
-            this.offIcon = offIcon;
+        public ComActionListener(JButton btn, ImageIcon on, ImageIcon off) {
+            this.btn = btn;
+            this.on = on;
+            this.off = off;
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            button.setIcon(button.getIcon() == offIcon ? onIcon : offIcon);
+
+            if (btn.getIcon() == off) {
+                btn.setIcon(on);
+            } else {
+                btn.setIcon(off);
+            }
         }
     }
 }
