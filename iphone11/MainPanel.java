@@ -39,7 +39,7 @@ public class MainPanel extends JPanel {
         }
         return instance;
     }
-    private MainPanel() throws Exception {
+    public MainPanel() throws Exception {
         setLayout(new BorderLayout());
         // North part
         JPanel northPanel = new JPanel(new FlowLayout());
