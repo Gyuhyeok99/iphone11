@@ -114,6 +114,8 @@ public class Calculator extends JPanel {
         timeCount.start(actionListener);
     }
 
+
+
     private static void calculatorBtnPosition(JButton[] calculatorBtns) {
         int calX = 25, calY = 180, calWidth =60, calHeight = 60, interval = 90;
         calculatorBtns[0].setBounds(calX, calY + interval * 4, 173, 80);
@@ -254,4 +256,5 @@ public class Calculator extends JPanel {
 
 
     }
+
 }

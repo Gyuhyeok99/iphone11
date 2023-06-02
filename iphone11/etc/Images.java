@@ -6,8 +6,8 @@ public class Images {
     private static final String PATH = "images/";
 
     private static final String BACKGROUND_IMAGE = PATH + "backgroundImage.png";
-    private static final String TELECOMMUNICATIONS_IMAGE = PATH + "telecommunications.jpg";
-    private static final String BATTERY_IMAGE = PATH + "battery.jpg";
+    private static final String TELECOMMUNICATIONS_IMAGE = PATH + "telecommunications.png";
+    private static final String BATTERY_IMAGE = PATH + "battery.png";
 
     //password
     private static final String _0_0PNG = PATH + "password/0.png";

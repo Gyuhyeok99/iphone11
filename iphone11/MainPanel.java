@@ -145,7 +145,7 @@ public class MainPanel extends JPanel {
         Calculator = iphone11.apps.Calculator.getInstance();
         Gallery = iphone11.apps.Gallery.getInstance();
         Stopwatch = iphone11.apps.Stopwatch.getInstance();
-        appPanels = new JPanel[]{ DrawingBoard,Calculator, Gallery, Stopwatch};
+        appPanels = new JPanel[]{ Gallery,Calculator,DrawingBoard , Stopwatch};
     }
     class AppsActionListener implements ActionListener {
         @Override
@@ -176,5 +176,6 @@ public class MainPanel extends JPanel {
         g.fillRoundRect(10, getHeight() - 118, 380, 110, 30, 30);
         g.setColor(Color.white);
         g.fillRoundRect(330, 30, 70, 5, 10, 10);
+        g.fillRoundRect(130, 694, 140, 8, 10, 10);
     }
 }
