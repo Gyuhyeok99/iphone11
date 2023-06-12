@@ -1,9 +1,7 @@
 package iphone11;
 
-import iphone11.etc.DefaultSetting;
-import iphone11.etc.Images;
-import iphone11.etc.Time;
-import iphone11.etc.TimeCount;
+import iphone11.etc.*;
+import iphone11.etc.north.NorthPanelV2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,8 +17,6 @@ public class MainPanel extends JPanel {
     private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
-    private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
-    private final ImageIcon battery = Images.BATTERY;
     private final ImageIcon gallery = Images.GALLERY;
     private final ImageIcon message = Images.MESSAGE;
     private final ImageIcon phone = Images.PHONE;
@@ -41,34 +37,16 @@ public class MainPanel extends JPanel {
     }
     public MainPanel() throws Exception {
         setLayout(new BorderLayout());
+
         // North part
-        JPanel northPanel = new JPanel(new FlowLayout());
-        northPanel.setOpaque(false);
-        add(northPanel, BorderLayout.NORTH);
-
-        JLabel minuteHour = Time.getHourMinute();
-        minuteHour.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 22));
-        JLabel whiteSpace = new JLabel("                                                ");
-
-        JLabel lte = new JLabel("LTE");
-        lte.setForeground(Color.WHITE);
-        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-
-        JLabel tel = new JLabel(telecommunications);
-        JLabel bat = new JLabel(battery);
-
-        northPanel.add(minuteHour);
-        northPanel.add(whiteSpace);
-        northPanel.add(tel);
-        northPanel.add(lte);
-        northPanel.add(bat);
+        add(new NorthPanelV2(), BorderLayout.NORTH);
 
         // CENTER part
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 40));
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
-         centerIcons = new JButton[4];
+        centerIcons = new JButton[4];
         centerIcons[0] = new JButton(notepad);
         centerIcons[1] = new JButton(calculator);
         centerIcons[2] = new JButton(drawingBoard);

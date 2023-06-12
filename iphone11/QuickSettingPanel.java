@@ -50,37 +50,8 @@ public class QuickSettingPanel extends JPanel {
     private QuickSettingPanel() throws Exception {
         setLayout(new BorderLayout());
 
-
         // North part
-        JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0 , 60));
-        northPanel.setOpaque(false);
-        add(northPanel, BorderLayout.NORTH);
-
-        JLabel whiteSpace = new JLabel("                                 ");
-
-        JLabel lg = new JLabel("LG U+ ");
-        lg.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-        lg.setForeground(Color.white);
-
-        JLabel lte = new JLabel("LTE");
-        lte.setForeground(Color.WHITE);
-        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-
-        JLabel intBattery = new JLabel("100%");
-        intBattery.setForeground(Color.WHITE);
-        intBattery.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-
-
-        JLabel tel = new JLabel(telecommunications);
-        JLabel bat = new JLabel(battery);
-
-
-        northPanel.add(tel);
-        northPanel.add(lg);
-        northPanel.add(lte);
-        northPanel.add(whiteSpace);
-        northPanel.add(intBattery);
-        northPanel.add(bat);
+        northPanel();
 
         //CENTER part
         JPanel centerPanel = new JPanel(null);
@@ -177,11 +148,6 @@ public class QuickSettingPanel extends JPanel {
             screenBtns[i].setBounds(screenX + i * 87, screenY, screenWidth, screenHeight);
         }
 
-
-
-
-
-
         audioBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -258,6 +224,38 @@ public class QuickSettingPanel extends JPanel {
         timeCount.start(actionListener);
         setFocusable(true);
         requestFocus();
+    }
+
+    private void northPanel() {
+        JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0 , 60));
+        northPanel.setOpaque(false);
+        add(northPanel, BorderLayout.NORTH);
+
+        JLabel whiteSpace = new JLabel("                                 ");
+
+        JLabel lg = new JLabel("LG U+ ");
+        lg.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
+        lg.setForeground(Color.white);
+
+        JLabel lte = new JLabel("LTE");
+        lte.setForeground(Color.WHITE);
+        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
+
+        JLabel intBattery = new JLabel("100%");
+        intBattery.setForeground(Color.WHITE);
+        intBattery.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
+
+
+        JLabel tel = new JLabel(telecommunications);
+        JLabel bat = new JLabel(battery);
+
+
+        northPanel.add(tel);
+        northPanel.add(lg);
+        northPanel.add(lte);
+        northPanel.add(whiteSpace);
+        northPanel.add(intBattery);
+        northPanel.add(bat);
     }
 
     @Override

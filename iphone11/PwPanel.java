@@ -3,6 +3,7 @@ package iphone11;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
 import iphone11.etc.TimeCount;
+import iphone11.etc.north.NorthPanelV1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,28 +24,7 @@ public class PwPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // North part
-        JPanel northPanel = new JPanel(new FlowLayout());
-        northPanel.setOpaque(false);
-        add(northPanel, BorderLayout.NORTH);
-
-        JLabel lg = new JLabel("LG U+");
-        lg.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-        lg.setForeground(Color.white);
-        JLabel whiteSpace = new JLabel("                                                ");
-
-        JLabel lte = new JLabel("LTE");
-        lte.setForeground(Color.WHITE);
-        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-
-        JLabel tel = new JLabel(telecommunications);
-        JLabel bat = new JLabel(battery);
-
-        northPanel.add(lg);
-        northPanel.add(whiteSpace);
-        northPanel.add(tel);
-        northPanel.add(lte);
-        northPanel.add(bat);
-
+        add(new NorthPanelV1(), BorderLayout.NORTH);
 
         // CENTER part
         JPanel centerPanel = new JPanel(null);

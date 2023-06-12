@@ -3,10 +3,8 @@ package iphone11.apps;
 import iphone11.BlackPanel;
 import iphone11.Home;
 import iphone11.MainPanel;
-import iphone11.etc.DefaultSetting;
-import iphone11.etc.Images;
-import iphone11.etc.Time;
-import iphone11.etc.TimeCount;
+import iphone11.etc.*;
+import iphone11.etc.north.NorthPanelV2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,36 +24,13 @@ public class Calculator extends JPanel {
         }
         return instance;
     }
-    private final ImageIcon telecommunications = Images.TELECOMMUNICATIONS;
-    private final ImageIcon battery = Images.BATTERY;
     private JLabel result;
     private Calculator() {
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.BLACK);
         //NORTH prat
-        JPanel northPanel = new JPanel(new FlowLayout());
-        northPanel.setOpaque(false);
-        JLabel minuteHour = Time.getHourMinute();
-        minuteHour.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 22));
-        JLabel whiteSpace = new JLabel("                                                ");
-
-        JLabel lte = new JLabel("LTE");
-        lte.setForeground(Color.WHITE);
-        lte.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 18));
-
-        JLabel tel = new JLabel(telecommunications);
-        JLabel bat = new JLabel(battery);
-
-        northPanel.add(minuteHour);
-        northPanel.add(whiteSpace);
-        northPanel.add(tel);
-        northPanel.add(lte);
-        northPanel.add(bat);
-
-
-        add(northPanel, BorderLayout.NORTH);
-
+        add(new NorthPanelV2(), BorderLayout.NORTH);
 
         //CENTER part
         JPanel centerPanel = new JPanel(null);
@@ -64,7 +39,7 @@ public class Calculator extends JPanel {
 
         result = new JLabel("0");
         result.setForeground(Color.WHITE);
-        result.setHorizontalAlignment(SwingConstants.LEFT);  // 왼쪽 정렬로 변경
+        result.setHorizontalAlignment(SwingConstants.LEFT);
         result.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 50));
         result.setBounds(40, 80, 400, 100);
         centerPanel.add(result);

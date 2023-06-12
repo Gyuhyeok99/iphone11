@@ -12,8 +12,8 @@ public class Stopwatch extends JPanel {
         return instance;
     }
     private Stopwatch() {
-        setLayout(null);
+        setLayout(new BorderLayout());
         setOpaque(true);
-        setBackground(Color.RED);
+        setBackground(Color.BLACK);
     }
 }
