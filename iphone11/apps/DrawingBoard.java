@@ -1,7 +1,7 @@
 package iphone11.apps;
 
 import iphone11.Home;
-import iphone11.MainPanel;
+import iphone11.panel.MainPanel;
 import iphone11.etc.DefaultSetting;
 
 import javax.swing.*;

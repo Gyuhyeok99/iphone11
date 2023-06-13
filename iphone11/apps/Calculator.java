@@ -1,8 +1,8 @@
 package iphone11.apps;
 
-import iphone11.BlackPanel;
+import iphone11.panel.BlackPanel;
 import iphone11.Home;
-import iphone11.MainPanel;
+import iphone11.panel.MainPanel;
 import iphone11.etc.*;
 import iphone11.etc.north.NorthPanelV2;
 

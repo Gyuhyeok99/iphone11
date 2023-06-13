@@ -60,6 +60,13 @@ public class Images {
     private static final String PLAYBACK_PNG = PATH + "audios/playback.png";
     private static final String STOP_PNG = PATH + "audios/stop.png";
 
+    //stopwatch
+    private static final String LAP_OFF_PNG = PATH + "stopwatch/lapOff.png";
+    private static final String LAP_ON_PNG = PATH + "stopwatch/lapOn.png";
+    private static final String START_PNG = PATH + "stopwatch/start.png";
+    private static final String RESET_PNG = PATH + "stopwatch/reset.png";
+    private static final String STOP_2_PNG = PATH + "stopwatch/stop2.png";
+
     //calculator
 
     private static final String _0_PNG = PATH + "calculator/0.png";
@@ -81,8 +88,6 @@ public class Images {
     private static final String MULTIPLICATION_PNG = PATH + "calculator/multiplication.png";
     private static final String PLUS_PNG = PATH + "calculator/plus.png";
     private static final String PLUS_MINUS_PNG = PATH + "calculator/plusMinus.png";
-
-
 
     public static final ImageIcon BACKGROUND = new ImageIcon(BACKGROUND_IMAGE);
     public static final ImageIcon TELECOMMUNICATIONS = new ImageIcon(TELECOMMUNICATIONS_IMAGE);
@@ -137,6 +142,13 @@ public class Images {
     //audio
     public static final ImageIcon PLAYBACK = new ImageIcon(PLAYBACK_PNG);
     public static final ImageIcon STOP = new ImageIcon(STOP_PNG);
+
+    //stopwatch
+    public static final ImageIcon LAP_OFF = new ImageIcon(LAP_OFF_PNG);
+    public static final ImageIcon LAP_ON = new ImageIcon(LAP_ON_PNG);
+    public static final ImageIcon START = new ImageIcon(START_PNG);
+    public static final ImageIcon RESET = new ImageIcon(RESET_PNG);
+    public static final ImageIcon STOP_2 = new ImageIcon(STOP_2_PNG);
 
     //calculator
     public static final ImageIcon _0 = new ImageIcon(_0_PNG);
