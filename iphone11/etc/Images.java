@@ -1,6 +1,7 @@
 package iphone11.etc;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Images {
     private static final String PATH = "images/";
@@ -59,6 +60,12 @@ public class Images {
     //audio
     private static final String PLAYBACK_PNG = PATH + "audios/playback.png";
     private static final String STOP_PNG = PATH + "audios/stop.png";
+
+    //notepad
+    private static final String ADD_FOLDER_PNG = PATH + "notepad/addFolder.png";
+    private static final String FOLDER_PNG = PATH + "notepad/folder.png";
+    private static final String RECYCLE_BIN_PNG = PATH + "notepad/recycleBin.png";
+    private static final String WRITING_PNG = PATH +"notepad/writing.png";
 
     //stopwatch
     private static final String LAP_OFF_PNG = PATH + "stopwatch/lapOff.png";
@@ -142,6 +149,12 @@ public class Images {
     //audio
     public static final ImageIcon PLAYBACK = new ImageIcon(PLAYBACK_PNG);
     public static final ImageIcon STOP = new ImageIcon(STOP_PNG);
+
+    //notepad
+    public static final ImageIcon ADD_FOLDER = new ImageIcon(ADD_FOLDER_PNG);
+    public static final ImageIcon FOLDER = new ImageIcon(FOLDER_PNG);
+    public static final ImageIcon RECYCLE_BIN = new ImageIcon(RECYCLE_BIN_PNG);
+    public static final ImageIcon WRITING = new ImageIcon(WRITING_PNG);
 
     //stopwatch
     public static final ImageIcon LAP_OFF = new ImageIcon(LAP_OFF_PNG);

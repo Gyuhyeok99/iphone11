@@ -11,7 +11,7 @@ import java.awt.event.*;
 public class MainPanel extends JPanel {
     private final JPanel Calculator;
     private final JPanel DrawingBoard;
-    private final JPanel Gallery;
+    private final JPanel Notepad;
     private final JPanel Stopwatch;
     private final JPanel[] appPanels;
     private final JButton[] centerIcons;
@@ -111,11 +111,11 @@ public class MainPanel extends JPanel {
         });
         timeCount.start(actionListener);
 
-        DrawingBoard = iphone11.apps.DrawingBoard.getInstance();
-        Calculator = iphone11.apps.Calculator.getInstance();
-        Gallery = iphone11.apps.Gallery.getInstance();
-        Stopwatch = iphone11.apps.Stopwatch.getInstance();
-        appPanels = new JPanel[]{ Gallery,Calculator,DrawingBoard , Stopwatch};
+        DrawingBoard = iphone11.apps.drawingBoard.DrawingBoard.getInstance();
+        Calculator = iphone11.apps.calculator.Calculator.getInstance();
+        Notepad = iphone11.apps.notepad.Notepad.getInstance();
+        Stopwatch = iphone11.apps.stopwatch.Stopwatch.getInstance();
+        appPanels = new JPanel[]{Notepad,Calculator,DrawingBoard , Stopwatch};
     }
     class AppsActionListener implements ActionListener {
         @Override
