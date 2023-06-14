@@ -9,12 +9,17 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MainPanel extends JPanel {
-    private final JPanel Calculator;
-    private final JPanel DrawingBoard;
-    private final JPanel Notepad;
-    private final JPanel Stopwatch;
+    private final JPanel calculator;
+    private final JPanel drawingBoard;
+    private final JPanel notepad;
+    private final JPanel stopwatch;
+    private final JPanel gallery;
+    private final JPanel message;
+    private final JPanel phone;
+    private final JPanel setting;
     private final JPanel[] appPanels;
     private final JButton[] centerIcons;
+    private final JButton[] icons;
     private TimeCount timeCount;
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
@@ -64,10 +69,20 @@ public class MainPanel extends JPanel {
         for (int i = 0; i < southIcons.length; i++) {
             DefaultSetting.btnSetting(southIcons[i]);
             southPanel.add(southIcons[i]);
+            southIcons[i].addActionListener(new AppsActionListener());
         }
         setFocusable(true);
         requestFocus();
 
+        icons = new JButton[8];
+        for(int i = 0; i < icons.length; i++){
+            if(i < 4 ) {
+                icons[i] = centerIcons[i];
+            }
+            else{
+                icons[i] = southIcons[i - 4];
+            }
+        }
         timeCount = new TimeCount();
 
         ActionListener actionListener = new ActionListener() {
@@ -111,19 +126,25 @@ public class MainPanel extends JPanel {
         });
         timeCount.start(actionListener);
 
-        DrawingBoard = iphone11.apps.drawingBoard.DrawingBoard.getInstance();
-        Calculator = iphone11.apps.calculator.Calculator.getInstance();
-        Notepad = iphone11.apps.notepad.Notepad.getInstance();
-        Stopwatch = iphone11.apps.stopwatch.Stopwatch.getInstance();
-        appPanels = new JPanel[]{Notepad,Calculator,DrawingBoard , Stopwatch};
+        drawingBoard = iphone11.apps.drawingBoard.DrawingBoard.getInstance();
+        calculator = iphone11.apps.calculator.Calculator.getInstance();
+        notepad = iphone11.apps.notepad.Notepad.getInstance();
+        stopwatch = iphone11.apps.stopwatch.Stopwatch.getInstance();
+        gallery = iphone11.apps.gallery.Gallery.getInstance();
+        message = iphone11.apps.message.Message.getInstance();
+        phone = iphone11.apps.phone.Phone.getInstance();
+        setting = iphone11.apps.setting.Setting.getInstance();
+
+        appPanels = new JPanel[]{notepad, calculator, drawingBoard, stopwatch, phone , gallery, message, setting};
+
     }
     class AppsActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
 
-            for (int i = 0; i < centerIcons.length; i++) {
-                if (btn == centerIcons[i]) {
+            for (int i = 0; i < icons.length; i++) {
+                if (btn == icons[i]) {
                     JPanel targetPanel = appPanels[i];
                     if (targetPanel != null) {
                         try {
