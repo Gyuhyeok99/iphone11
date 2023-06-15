@@ -56,6 +56,27 @@ public class Images {
     private static final String CALCULATOR2_PNG = PATH + "setting/calculator2.png";
     private static final String CAMERA_PNG = PATH + "setting/camera.png";
 
+    //gallery
+    private static final String IU_1_JPG = PATH + "gallery/iu1.jpg";
+    private static final String IU_2_JPG = PATH + "gallery/iu2.jpg";
+    private static final String IU_3_JPG = PATH + "gallery/iu3.jpg";
+    private static final String IU_4_JPG = PATH + "gallery/iu4.jpg";
+    private static final String IU_5_JPG = PATH + "gallery/iu5.jpg";
+    private static final String IU_6_JPG = PATH + "gallery/iu6.jpg";
+    private static final String IU_7_JPG = PATH + "gallery/iu7.jpg";
+    private static final String IU_8_JPG = PATH + "gallery/iu8.jpg";
+    private static final String IU_9_JPG = PATH + "gallery/iu9.jpg";
+    private static final String IU_10_JPG = PATH + "gallery/iu10.jpg";
+    private static final String IU_11_JPG = PATH + "gallery/iu11.jpg";
+    private static final String IU_12_JPG = PATH + "gallery/iu12.jpg";
+    private static final String IU_13_JPG = PATH + "gallery/iu13.jpg";
+    private static final String IU_14_JPG = PATH + "gallery/iu14.jpg";
+    private static final String IU_15_JPG = PATH + "gallery/iu15.jpg";
+    private static final String IU_16_JPG = PATH + "gallery/iu16.jpg";
+    private static final String IU_17_JPG = PATH + "gallery/iu17.jpg";
+    private static final String IU_18_JPG = PATH + "gallery/iu18.jpg";
+    private static final String IU_19_JPG = PATH + "gallery/iu19.jpg";
+    private static final String IU_20_JPG = PATH + "gallery/iu20.jpg";
 
     //audio
     private static final String PLAYBACK_PNG = PATH + "audios/playback.png";
@@ -145,6 +166,28 @@ public class Images {
     public static final ImageIcon STOPWATCH2 = new ImageIcon(STOPWATCH2_PNG);
     public static final ImageIcon CALCULATOR2 = new ImageIcon(CALCULATOR2_PNG);
     public static final ImageIcon CAMERA = new ImageIcon(CAMERA_PNG);
+
+    //gallery
+    public static final ImageIcon IU_1 = new ImageIcon(IU_1_JPG);
+    public static final ImageIcon IU_2 = new ImageIcon(IU_2_JPG);
+    public static final ImageIcon IU_3 = new ImageIcon(IU_3_JPG);
+    public static final ImageIcon IU_4 = new ImageIcon(IU_4_JPG);
+    public static final ImageIcon IU_5 = new ImageIcon(IU_5_JPG);
+    public static final ImageIcon IU_6 = new ImageIcon(IU_6_JPG);
+    public static final ImageIcon IU_7 = new ImageIcon(IU_7_JPG);
+    public static final ImageIcon IU_8 = new ImageIcon(IU_8_JPG);
+    public static final ImageIcon IU_9 = new ImageIcon(IU_9_JPG);
+    public static final ImageIcon IU_10 = new ImageIcon(IU_10_JPG);
+    public static final ImageIcon IU_11 = new ImageIcon(IU_11_JPG);
+    public static final ImageIcon IU_12 = new ImageIcon(IU_12_JPG);
+    public static final ImageIcon IU_13 = new ImageIcon(IU_13_JPG);
+    public static final ImageIcon IU_14 = new ImageIcon(IU_14_JPG);
+    public static final ImageIcon IU_15 = new ImageIcon(IU_15_JPG);
+    public static final ImageIcon IU_16 = new ImageIcon(IU_16_JPG);
+    public static final ImageIcon IU_17 = new ImageIcon(IU_17_JPG);
+    public static final ImageIcon IU_18 = new ImageIcon(IU_18_JPG);
+    public static final ImageIcon IU_19 = new ImageIcon(IU_19_JPG);
+    public static final ImageIcon IU_20 = new ImageIcon(IU_20_JPG);
 
     //audio
     public static final ImageIcon PLAYBACK = new ImageIcon(PLAYBACK_PNG);

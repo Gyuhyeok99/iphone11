@@ -90,8 +90,6 @@ public class HomePanel extends JPanel {
                     Home home = (Home)getTopLevelAncestor();
                     DefaultSetting.setContentPane(home, pwPanel);
                 }
-
-
             }
         });
 

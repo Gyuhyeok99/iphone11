@@ -1,6 +1,5 @@
 package iphone11.apps.phone;
 
-import iphone11.apps.gallery.Gallery;
 
 import javax.swing.*;
 import java.awt.*;

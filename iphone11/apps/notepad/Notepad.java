@@ -42,7 +42,7 @@ public class Notepad extends JPanel {
         Notes.setBounds(15, 30, 200, 30);
         centerPanel.add(Notes);
 
-        JTextField search = new JTextField();
+        JTextField search = new JTextField(); //이거 변수명 설명으로 바꾸기!!!!!!!!1
         search.setBounds(20, 80, 360 , 40);
         search.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 20));
         search.setForeground(Color.white);
