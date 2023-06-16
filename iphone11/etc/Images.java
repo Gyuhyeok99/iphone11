@@ -78,6 +78,22 @@ public class Images {
     private static final String IU_19_JPG = PATH + "gallery/iu19.jpg";
     private static final String IU_20_JPG = PATH + "gallery/iu20.jpg";
 
+    //call
+    private static final String HASH_PNG = PATH + "call/#.png";
+    private static final String ASTERISK_PNG = PATH + "call/*.png";
+    private static final String _0_1_PNG = PATH + "call/0.png";
+    private static final String ADD_CALL_PNG = PATH + "call/addCall.png";
+    private static final String CALL_PNG = PATH + "call/call.png";
+    private static final String CONTACTS_PNG = PATH + "call/contacts.png";
+    private static final String END_OF_CALL_PNG = PATH + "call/endOfCall.png";
+    private static final String FACE_TIME_PNG = PATH + "call/faceTime.png";
+    private static final String KEYPAD_PNG = PATH + "call/keypad.png";
+    private static final String MUTE_PNG = PATH + "call/mute.png";
+    private static final String SPEAKER_PNG = PATH + "call/speaker.png";
+    private static final String CLEAR_PNG = PATH + "call/clear.png";
+    private static final String SOUTH_PNG = PATH + "call/south.png";
+
+
     //audio
     private static final String PLAYBACK_PNG = PATH + "audios/playback.png";
     private static final String STOP_PNG = PATH + "audios/stop.png";
@@ -188,6 +204,21 @@ public class Images {
     public static final ImageIcon IU_18 = new ImageIcon(IU_18_JPG);
     public static final ImageIcon IU_19 = new ImageIcon(IU_19_JPG);
     public static final ImageIcon IU_20 = new ImageIcon(IU_20_JPG);
+
+    //call
+    public static final ImageIcon HASH = new ImageIcon(HASH_PNG);
+    public static final ImageIcon ASTERISK = new ImageIcon(ASTERISK_PNG);
+    public static final ImageIcon _0_1 = new ImageIcon(_0_1_PNG);
+    public static final ImageIcon ADD_CALL = new ImageIcon(ADD_CALL_PNG);
+    public static final ImageIcon CALL = new ImageIcon(CALL_PNG);
+    public static final ImageIcon CONTACTS = new ImageIcon(CONTACTS_PNG);
+    public static final ImageIcon END_OF_CALL = new ImageIcon(END_OF_CALL_PNG);
+    public static final ImageIcon FACE_TIME = new ImageIcon(FACE_TIME_PNG);
+    public static final ImageIcon KEYPAD = new ImageIcon(KEYPAD_PNG);
+    public static final ImageIcon MUTE = new ImageIcon(MUTE_PNG);
+    public static final ImageIcon SPEAKER = new ImageIcon(SPEAKER_PNG);
+    public static final ImageIcon CLEAR = new ImageIcon(CLEAR_PNG);
+    public static final ImageIcon SOUTH = new ImageIcon(SOUTH_PNG);
 
     //audio
     public static final ImageIcon PLAYBACK = new ImageIcon(PLAYBACK_PNG);

@@ -1,6 +1,8 @@
 package iphone11.panel;
 
 import iphone11.Home;
+import iphone11.apps.call.Call;
+import iphone11.apps.call.Calling;
 import iphone11.etc.*;
 import iphone11.etc.north.NorthPanelV2;
 
@@ -95,13 +97,6 @@ public class MainPanel extends JPanel {
                 }
             }
         };
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("Main 키입력좀 받아줘~");
-                timeCount.start(actionListener);
-            }
-        });
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -132,7 +127,7 @@ public class MainPanel extends JPanel {
         stopwatch = iphone11.apps.stopwatch.Stopwatch.getInstance();
         gallery = iphone11.apps.gallery.Gallery.getInstance();
         message = iphone11.apps.message.Message.getInstance();
-        phone = iphone11.apps.phone.Phone.getInstance();
+        phone = Call.getInstance();
         setting = iphone11.apps.setting.Setting.getInstance();
 
         appPanels = new JPanel[]{notepad, calculator, drawingBoard, stopwatch, phone , gallery, message, setting};
@@ -146,6 +141,9 @@ public class MainPanel extends JPanel {
             for (int i = 0; i < icons.length; i++) {
                 if (btn == icons[i]) {
                     JPanel targetPanel = appPanels[i];
+                    if(targetPanel == Call.getInstance() && (Call.getInstance().isNowCalling())){
+                    targetPanel = Calling.getInstance();
+                    }
                     if (targetPanel != null) {
                         try {
                             Home home = (Home) getTopLevelAncestor();

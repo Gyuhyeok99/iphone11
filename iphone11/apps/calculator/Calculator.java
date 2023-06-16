@@ -39,9 +39,9 @@ public class Calculator extends JPanel {
 
         result = new JLabel("0");
         result.setForeground(Color.WHITE);
-        result.setHorizontalAlignment(SwingConstants.LEFT);
+        result.setHorizontalAlignment(SwingConstants.RIGHT);
         result.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 50));
-        result.setBounds(40, 80, 400, 100);
+        result.setBounds(-30, 80, 400, 100);
         centerPanel.add(result);
 
         calculatorImgs = new ImageIcon[19];
@@ -224,8 +224,8 @@ public class Calculator extends JPanel {
         calculatorBtns[10].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                result.setText("0"); // result 라벨 초기화
-                saveResult = ""; // currentExpression 초기화
+                result.setText("0");
+                saveResult = "";
             }
         });
 
