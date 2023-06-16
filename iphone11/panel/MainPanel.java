@@ -3,6 +3,7 @@ package iphone11.panel;
 import iphone11.Home;
 import iphone11.apps.call.Call;
 import iphone11.apps.call.Calling;
+import iphone11.apps.game.ClickBallHome;
 import iphone11.etc.*;
 import iphone11.etc.north.NorthPanelV2;
 
@@ -16,7 +17,7 @@ public class MainPanel extends JPanel {
     private final JPanel notepad;
     private final JPanel stopwatch;
     private final JPanel gallery;
-    private final JPanel message;
+    private final JPanel game;
     private final JPanel phone;
     private final JPanel setting;
     private final JPanel[] appPanels;
@@ -65,7 +66,7 @@ public class MainPanel extends JPanel {
         JButton[] southIcons = new JButton[4];
         southIcons[0] = new JButton(Images.PHONE);
         southIcons[1] = new JButton(Images.GALLERY);
-        southIcons[2] = new JButton(Images.MESSAGE);
+        southIcons[2] = new JButton(Images.BALL_GAME);
         southIcons[3] = new JButton(Images.SETTING);
 
         for (int i = 0; i < southIcons.length; i++) {
@@ -126,11 +127,11 @@ public class MainPanel extends JPanel {
         notepad = iphone11.apps.notepad.Notepad.getInstance();
         stopwatch = iphone11.apps.stopwatch.Stopwatch.getInstance();
         gallery = iphone11.apps.gallery.Gallery.getInstance();
-        message = iphone11.apps.message.Message.getInstance();
+        game = ClickBallHome.getInstance();
         phone = Call.getInstance();
         setting = iphone11.apps.setting.Setting.getInstance();
 
-        appPanels = new JPanel[]{notepad, calculator, drawingBoard, stopwatch, phone , gallery, message, setting};
+        appPanels = new JPanel[]{notepad, calculator, drawingBoard, stopwatch, phone , gallery, game, setting};
 
     }
     class AppsActionListener implements ActionListener {

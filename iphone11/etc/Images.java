@@ -1,7 +1,6 @@
 package iphone11.etc;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Images {
     private static final String PATH = "images/";
@@ -27,7 +26,7 @@ public class Images {
 
     //app
     private static final String GALLERY_PNG = PATH + "appIcon/gallery.png";
-    private static final String MESSAGE_PNG = PATH + "appIcon/message.png";
+    private static final String BALL_GAME_PNG = PATH + "appIcon/ballGame.png";
     private static final String PHONE_PNG = PATH + "appIcon/phone.png";
     private static final String SETTING_PNG = PATH + "appIcon/setting.png";
     private static final String NOTEPAD_PNG = PATH + "appIcon/notepad.png";
@@ -154,7 +153,7 @@ public class Images {
 
     //app
     public static final ImageIcon GALLERY = new ImageIcon(GALLERY_PNG);
-    public static final ImageIcon MESSAGE = new ImageIcon(MESSAGE_PNG);
+    public static final ImageIcon BALL_GAME = new ImageIcon(BALL_GAME_PNG);
     public static final ImageIcon PHONE = new ImageIcon(PHONE_PNG);
     public static final ImageIcon SETTING = new ImageIcon(SETTING_PNG);
     public static final ImageIcon NOTEPAD = new ImageIcon(NOTEPAD_PNG);
