@@ -3,7 +3,6 @@ package iphone11.panel;
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
-import iphone11.etc.Time;
 import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV1;
 
@@ -160,27 +159,6 @@ public class PwPanel extends JPanel {
                 }
             }
         };
-
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                timeCount.start(actionListener);
-                System.out.println("Pw왜 키입력을 못받니");
-            }
-            @Override
-            public void keyPressed(KeyEvent e) {
-                timeCount.start(actionListener);
-                System.out.println("Pw이유를 알고싶어");
-                System.out.println("Key pressed: " + e.getKeyCode());
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                timeCount.start(actionListener);
-                System.out.println("Pw나 너무 힘들어 ㅜㅜ");
-            }
-        });
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

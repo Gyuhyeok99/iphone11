@@ -1,10 +1,11 @@
 package iphone11.apps.call;
 
-
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
+import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV2;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.MainPanel;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Call extends JPanel {
-
+    private TimeCount timeCount;
     private static Call instance;
     public static Call getInstance() {
         if(instance == null) {
@@ -60,7 +61,18 @@ public class Call extends JPanel {
     }
 
     private Call() {
-
+        timeCount = TimeCount.getInstance();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    DefaultSetting.setContentPane(home, blackPanel);
+                }
+            }
+        };
+        timeCount.start(actionListener);
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.black);
@@ -139,6 +151,7 @@ public class Call extends JPanel {
                     String inputText = phone.getText();
                     phone.setText(inputText + num);
                     savePhoneNum += num;
+                    timeCount.start(actionListener);
                 }
             });
         }
@@ -152,6 +165,7 @@ public class Call extends JPanel {
                 String inputText = phone.getText();
                 phone.setText(inputText + "*");
                 savePhoneNum += "*";
+                timeCount.start(actionListener);
             }
         });
         numBtns[11].addActionListener(new ActionListener() {
@@ -160,6 +174,7 @@ public class Call extends JPanel {
                 String inputText = phone.getText();
                 phone.setText(inputText + "#");
                 savePhoneNum += "#";
+                timeCount.start(actionListener);
             }
         });
         numBtns[12].addActionListener(new ActionListener() {
@@ -169,6 +184,7 @@ public class Call extends JPanel {
                 Home home = (Home) getTopLevelAncestor();
                 DefaultSetting.setContentPane(home, calling);
                 nowCalling = true;
+                timeCount.start(actionListener);
             }
         });
         numBtns[13].addActionListener(new ActionListener() {
@@ -183,6 +199,7 @@ public class Call extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 startY = e.getY();
+                timeCount.start(actionListener);
             }
             @Override
             public void mouseReleased(MouseEvent e) {

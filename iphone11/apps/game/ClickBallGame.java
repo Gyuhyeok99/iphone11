@@ -25,7 +25,6 @@ public class ClickBallGame extends JPanel {
     private int startY;
 
     public ClickBallGame() {
-
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
 
@@ -39,8 +38,17 @@ public class ClickBallGame extends JPanel {
                 System.out.println(score);
                 if (clickBall(e.getX(), e.getY())) {
                     score++;
-                    ballDX += 1;
-                    ballDY -= 1;
+                    if (ballDX > 0) {
+                        ballDX += 1;
+                    }else {
+                        ballDX -= 1;
+                    }
+                    if (ballDY > 0) {
+                        ballDY += 1;
+                    }else {
+                        ballDY -= 1;
+                    }
+
                 }
             }
         });

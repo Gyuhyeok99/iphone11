@@ -18,7 +18,7 @@ public class DefaultSetting {
     }
 
     private DefaultSetting() {
-        // Set default values
+
         fontNames = new String[]{"Arial", "Verdana", "Times New Roman"};
         fontStyles = new int[]{Font.PLAIN, Font.BOLD, Font.ITALIC};
         index1 = 0;

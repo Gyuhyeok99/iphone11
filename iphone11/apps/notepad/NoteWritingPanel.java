@@ -1,7 +1,9 @@
 package iphone11.apps.notepad;
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
+import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV2;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.MainPanel;
 
 import javax.swing.*;
@@ -12,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class NoteWritingPanel extends JPanel {
+    private TimeCount timeCount;
     private static NoteWritingPanel instance;
     private JTextArea textArea;
     private int startY;
@@ -26,6 +29,18 @@ public class NoteWritingPanel extends JPanel {
     }
 
     private NoteWritingPanel() throws Exception {
+        timeCount = TimeCount.getInstance();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    DefaultSetting.setContentPane(home, blackPanel);
+                }
+            }
+        };
+        timeCount.start(actionListener);
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.BLACK);
@@ -113,6 +128,7 @@ public class NoteWritingPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 startY = e.getY();
+                timeCount.start(actionListener);
             }
             @Override
             public void mouseReleased(MouseEvent e) {

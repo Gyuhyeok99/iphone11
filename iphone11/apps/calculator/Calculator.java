@@ -26,6 +26,7 @@ public class Calculator extends JPanel {
     }
     private JLabel result;
     private Calculator() {
+
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.BLACK);
@@ -88,9 +89,6 @@ public class Calculator extends JPanel {
         });
         timeCount.start(actionListener);
     }
-
-
-
     private static void calculatorBtnPosition(JButton[] calculatorBtns) {
         int calX = 25, calY = 180, calWidth =60, calHeight = 60, interval = 90;
         calculatorBtns[0].setBounds(calX, calY + interval * 4, 173, 80);
@@ -121,7 +119,6 @@ public class Calculator extends JPanel {
         for(int i = 17; i < 19; i++) {
             calculatorBtns[i].setBounds(calX + (i - 15) * interval, calY + interval * 4, 80, 80);
         }
-
     }
     private void sortCalculatorOrder() {
         calculatorImgs[0] = Images._0;calculatorImgs[1] = Images._1;calculatorImgs[2] = Images._2;
@@ -131,19 +128,14 @@ public class Calculator extends JPanel {
         calculatorImgs[12] = Images.DEVIDE_100;calculatorImgs[13] = Images.DIVISION;calculatorImgs[14] = Images.MULTIPLICATION;
         calculatorImgs[15] = Images.MINUS;calculatorImgs[16] = Images.PLUS;calculatorImgs[17] = Images.MINORITY_POINT;calculatorImgs[18] = Images.EQUAL;
     }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
         g.fillRoundRect(130, 694, 140, 8, 10, 10);
     }
-
-
     private String saveResult = "";
     private void calculator(JButton[] calculatorBtns) {
-
-        //When you click the number button
         for (int i = 0; i <= 9; i++) {
             int num = i;
             calculatorBtns[i].addActionListener(new ActionListener() {
@@ -155,7 +147,6 @@ public class Calculator extends JPanel {
                 }
             });
         }
-        // When you click the plus button
         calculatorBtns[16].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -164,8 +155,6 @@ public class Calculator extends JPanel {
                 saveResult += "+";
             }
         });
-
-        // When you click the minus button
         calculatorBtns[15].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -174,8 +163,6 @@ public class Calculator extends JPanel {
                 saveResult += "-";
             }
         });
-
-        // When you click the multiplication button
         calculatorBtns[14].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -185,7 +172,6 @@ public class Calculator extends JPanel {
             }
         });
 
-        // When you click the division button
         calculatorBtns[13].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -194,7 +180,6 @@ public class Calculator extends JPanel {
                 saveResult += "/";
             }
         });
-        // When you click the equal button
         calculatorBtns[18].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -220,7 +205,6 @@ public class Calculator extends JPanel {
                 Calculator.this.result.setText(saveResult + "=" + result);
             }
         });
-        // When you click the AC button
         calculatorBtns[10].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -228,8 +212,5 @@ public class Calculator extends JPanel {
                 saveResult = "";
             }
         });
-
-
     }
-
 }

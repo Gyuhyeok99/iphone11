@@ -1,6 +1,9 @@
 package iphone11.panel;
 
 import iphone11.Home;
+import iphone11.apps.calculator.Calculator;
+import iphone11.apps.gallery.Gallery;
+import iphone11.apps.stopwatch.Stopwatch;
 import iphone11.etc.Audios;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
@@ -35,7 +38,6 @@ public class QuickSettingPanel extends JPanel {
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
-        //Communication button related
         JButton[] onOffBtns = new JButton[6];
         onOffBtns[0] = new JButton(Images.AIRPLANE_OFF);
         onOffBtns[1] = new JButton(Images.DATA_ON);
@@ -63,7 +65,6 @@ public class QuickSettingPanel extends JPanel {
         onOffBtns[4].addActionListener(new onOffActionListener(onOffBtns[4], Images.FIX_ON, Images.FIX_OFF));
         onOffBtns[5].addActionListener(new onOffActionListener(onOffBtns[5], Images.FLASHLIGHT_ON,Images.FLASHLIGHT_OFF));
 
-        //music-related
         JLabel music;
         JButton audioBtn;
         audios = Audios.getInstance();
@@ -87,13 +88,11 @@ public class QuickSettingPanel extends JPanel {
         centerPanel.add(music);
         centerPanel.add(audioBtn);
 
-        //About screen mirroring
         JButton mirroringBtn = new JButton(Images.MIRRORING);
         DefaultSetting.btnSetting(mirroringBtn);
         mirroringBtn.setBounds(128, 175, 54, 40);
         centerPanel.add(mirroringBtn);
 
-        //Regarding the Do Not Disturb mode
         JButton disturbBtn = new JButton(Images.NO_DISTURBANCE);
         DefaultSetting.btnSetting(disturbBtn);
         disturbBtn.setBounds(45, 253, 60, 60);
@@ -105,7 +104,6 @@ public class QuickSettingPanel extends JPanel {
         focus.setBounds(115, 235, 100, 100);
         centerPanel.add(focus);
 
-        //volume and bright
         JLabel vo = new JLabel(Images.VOLUME);
         JLabel br = new JLabel(Images.BRIGHTNESS);
         br.setBounds(225 ,260, 33, 40);
@@ -113,7 +111,6 @@ public class QuickSettingPanel extends JPanel {
         centerPanel.add(vo);
         centerPanel.add(br);
 
-        //Button to another screen
         JButton[] screenBtns = new JButton[3];
         screenBtns[0] = new JButton(Images.STOPWATCH2);
         screenBtns[1] = new JButton(Images.CALCULATOR2);
@@ -124,6 +121,41 @@ public class QuickSettingPanel extends JPanel {
             centerPanel.add(screenBtns[i]);
             screenBtns[i].setBounds(screenX + i * 87, screenY, screenWidth, screenHeight);
         }
+        screenBtns[0].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Stopwatch stopwatch = null;
+                try {
+                     stopwatch = Stopwatch.getInstance();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                Home home = (Home) getTopLevelAncestor();
+                DefaultSetting.setContentPane(home, stopwatch);
+
+            }
+        });
+        screenBtns[1].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Calculator calculator = null;
+                try {
+                     calculator = Calculator.getInstance();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                Home home = (Home) getTopLevelAncestor();
+                DefaultSetting.setContentPane(home, calculator);
+            }
+        });
+        screenBtns[2].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gallery gallery = Gallery.getInstance();
+                Home home = (Home) getTopLevelAncestor();
+                DefaultSetting.setContentPane(home, gallery);
+            }
+        });
 
         audioBtn.addActionListener(new ActionListener() {
             @Override

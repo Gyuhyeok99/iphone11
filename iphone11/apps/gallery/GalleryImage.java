@@ -2,17 +2,21 @@ package iphone11.apps.gallery;
 
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
+import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV2;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 public class GalleryImage extends JPanel {
-
+    private TimeCount timeCount;
     private static GalleryImage instance;
 
     public static GalleryImage getInstance() {
@@ -30,6 +34,7 @@ public class GalleryImage extends JPanel {
 
 
     public void setIndex(int index) {
+
         this.index = index;
         Gallery gallery = Gallery.getInstance();
         Vector<Image> imageVector = gallery.getImageVector();
@@ -42,7 +47,18 @@ public class GalleryImage extends JPanel {
     }
 
     private GalleryImage() {
-
+        timeCount = TimeCount.getInstance();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    DefaultSetting.setContentPane(home, blackPanel);
+                }
+            }
+        };
+        timeCount.start(actionListener);
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.black);
@@ -80,6 +96,7 @@ public class GalleryImage extends JPanel {
             public void mousePressed(MouseEvent e) {
                 startX = e.getX();
                 startY = e.getY();
+                timeCount.start(actionListener);
             }
 
             @Override

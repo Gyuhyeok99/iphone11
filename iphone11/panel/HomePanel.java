@@ -18,7 +18,8 @@ public class HomePanel extends JPanel {
     private final ImageIcon background = Images.BACKGROUND;
     private final Image backgroundImage = background.getImage();
     private final JLabel dayMonth;
-    private final JLabel hourMinute;
+    private final JLabel
+            hourMinute;
     private int startY;
     private static HomePanel instance;
     public static HomePanel getInstance() throws Exception {

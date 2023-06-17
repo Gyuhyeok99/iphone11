@@ -14,16 +14,14 @@ import iphone11.apps.stopwatch.Stopwatch;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV2;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.HomePanel;
 import iphone11.panel.MainPanel;
 import iphone11.panel.QuickSettingPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class Setting extends JPanel {
     private DefaultSetting defaultSetting = DefaultSetting.getInstance();
@@ -53,6 +51,18 @@ public class Setting extends JPanel {
     }
 
     private Setting() throws Exception {
+
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    DefaultSetting.setContentPane(home, blackPanel);
+                }
+            }
+        };
+        timeCount.start(actionListener);
 
         setLayout(new BorderLayout());
         setOpaque(true);

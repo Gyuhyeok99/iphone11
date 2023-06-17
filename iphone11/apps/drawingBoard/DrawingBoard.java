@@ -1,6 +1,8 @@
 package iphone11.apps.drawingBoard;
 
 import iphone11.Home;
+import iphone11.etc.TimeCount;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.MainPanel;
 import iphone11.etc.DefaultSetting;
 
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrawingBoard extends JPanel {
+    private TimeCount timeCount;
     private static DrawingBoard instance;
     public static DrawingBoard getInstance() {
         if (instance == null) {
@@ -21,11 +24,23 @@ public class DrawingBoard extends JPanel {
 
     private List<List<Point>> lines;
     private List<Color> lineColors;
-    private final String[] colors = {"Black", "Blue", "Red"};
-    private Color[] color = {Color.BLACK, Color.BLUE, Color.RED};
+    private final String[] colors = {"Black", "Blue", "Red", "Orange", "Yellow", "White", "Green"};
+    private Color[] color = {Color.BLACK, Color.BLUE, Color.RED, Color.ORANGE, Color.YELLOW, Color.WHITE, Color.GREEN};
     private int index;
 
+    private ActionListener actionListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            BlackPanel blackPanel = new BlackPanel();
+            Home home = (Home) getTopLevelAncestor();
+            if (home != null) {
+                DefaultSetting.setContentPane(home, blackPanel);
+            }
+        }
+    };
     private DrawingBoard() {
+        timeCount = TimeCount.getInstance();
+        timeCount.start(actionListener);
         lines = new ArrayList<>();
         lineColors = new ArrayList<>();
         index = 0;
@@ -58,7 +73,6 @@ public class DrawingBoard extends JPanel {
             }
         });
     }
-
     private void createToolBar() {
         JToolBar toolBar = new JToolBar("DrawingBoard Menu");
         toolBar.setBackground(Color.LIGHT_GRAY);
@@ -96,6 +110,7 @@ public class DrawingBoard extends JPanel {
                 lines.clear();
                 lineColors.clear();
                 repaint();
+
             }
         });
 
@@ -110,27 +125,27 @@ public class DrawingBoard extends JPanel {
         toolBar.add(colorCombo);
         add(toolBar, BorderLayout.NORTH);
     }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) g;
+        Graphics2D g1 = (Graphics2D) g;
 
         for (int i = 0; i < lines.size(); i++) {
             List<Point> line = lines.get(i);
             Color lineColor = lineColors.get(i);
-            g2d.setColor(lineColor);
-            g2d.setStroke(new BasicStroke(2));
+            g1.setColor(lineColor);
+            g1.setStroke(new BasicStroke(2));
 
             if (line.size() > 1) {
                 Point startPoint = line.get(0);
                 for (int j = 1; j < line.size(); j++) {
                     Point endPoint = line.get(j);
-                    g2d.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+                    g1.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
                     startPoint = endPoint;
                 }
             }
         }
+        timeCount.start(actionListener);
     }
 }

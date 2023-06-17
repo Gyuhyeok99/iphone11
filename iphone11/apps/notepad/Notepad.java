@@ -3,7 +3,9 @@ package iphone11.apps.notepad;
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
+import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV2;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.MainPanel;
 
 import javax.swing.*;
@@ -14,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Notepad extends JPanel {
+    private TimeCount timeCount;
     private static Notepad instance;
     public static Notepad getInstance() throws Exception {
         if (instance == null) {
@@ -24,6 +27,18 @@ public class Notepad extends JPanel {
     private int startY;
     private JPanel centerPanel;
     private Notepad() {
+        timeCount = TimeCount.getInstance();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    DefaultSetting.setContentPane(home, blackPanel);
+                }
+            }
+        };
+        timeCount.start(actionListener);
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.BLACK);
@@ -42,7 +57,7 @@ public class Notepad extends JPanel {
         Notes.setBounds(15, 30, 200, 30);
         centerPanel.add(Notes);
 
-        JTextField search = new JTextField(); //이거 변수명 설명으로 바꾸기!!!!!!!!1
+        JTextField search = new JTextField();
         search.setBounds(20, 80, 360 , 40);
         search.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 20));
         search.setForeground(Color.white);
@@ -71,6 +86,7 @@ public class Notepad extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 startY = e.getY();
+                timeCount.start(actionListener);
             }
             @Override
             public void mouseReleased(MouseEvent e) {

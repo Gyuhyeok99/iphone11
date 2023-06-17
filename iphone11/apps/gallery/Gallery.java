@@ -3,17 +3,22 @@ package iphone11.apps.gallery;
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
+import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV2;
+import iphone11.panel.BlackPanel;
 import iphone11.panel.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDateTime;
 import java.util.Vector;
 
 public class Gallery extends JPanel {
+    private TimeCount timeCount;
     private Vector<Image> imageVector = new Vector<>();
     private static Gallery instance;
     public static Gallery getInstance() {
@@ -26,7 +31,18 @@ public class Gallery extends JPanel {
     private int startY;
 
     private Gallery() {
-
+        timeCount = TimeCount.getInstance();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BlackPanel blackPanel = new BlackPanel();
+                Home home = (Home) getTopLevelAncestor();
+                if (home != null) {
+                    DefaultSetting.setContentPane(home, blackPanel);
+                }
+            }
+        };
+        timeCount.start(actionListener);
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.black);
@@ -83,6 +99,7 @@ public class Gallery extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 startY = e.getY();
+                timeCount.start(actionListener);
             }
             @Override
             public void mouseReleased(MouseEvent e) {
