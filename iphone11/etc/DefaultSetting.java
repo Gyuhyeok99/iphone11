@@ -6,13 +6,23 @@ public class DefaultSetting {
     private static DefaultSetting instance;
     private String[] fontNames;
     private int[] fontStyles;
-    private int index;
+    private int index1;
+    private int index2;
+
+    public void setIndex1(int index1) {
+        this.index1 = index1;
+    }
+
+    public void setIndex2(int index2) {
+        this.index2 = index2;
+    }
 
     private DefaultSetting() {
         // Set default values
         fontNames = new String[]{"Arial", "Verdana", "Times New Roman"};
         fontStyles = new int[]{Font.PLAIN, Font.BOLD, Font.ITALIC};
-        index = 0;
+        index1 = 0;
+        index2 = 0;
     }
     public static DefaultSetting getInstance() {
         if (instance == null) {
@@ -21,17 +31,11 @@ public class DefaultSetting {
         return instance;
     }
     public String getFontName() {
-        return fontNames[index];
+        return fontNames[index1];
     }
 
     public int getFontStyle() {
-        return fontStyles[index];
-    }
-    public void changeFont() {
-        index++;
-        if (index >= fontNames.length) {
-            index = 0;
-        }
+        return fontStyles[index2];
     }
     public static void btnSetting(JButton btn) {
         btn.setOpaque(false);

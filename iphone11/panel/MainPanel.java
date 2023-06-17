@@ -86,7 +86,7 @@ public class MainPanel extends JPanel {
                 icons[i] = southIcons[i - 4];
             }
         }
-        timeCount = new TimeCount();
+        timeCount = TimeCount.getInstance();
 
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -143,7 +143,7 @@ public class MainPanel extends JPanel {
                 if (btn == icons[i]) {
                     JPanel targetPanel = appPanels[i];
                     if(targetPanel == Call.getInstance() && (Call.getInstance().isNowCalling())){
-                    targetPanel = Calling.getInstance();
+                    targetPanel = new Calling();
                     }
                     if (targetPanel != null) {
                         try {

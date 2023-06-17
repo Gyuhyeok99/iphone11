@@ -142,7 +142,7 @@ public class QuickSettingPanel extends JPanel {
             }
         });
 
-        timeCount = new TimeCount();
+        timeCount = TimeCount.getInstance();
         setFocusable(true);
         requestFocus();
 

@@ -60,7 +60,7 @@ public class HomePanel extends JPanel {
         setFocusable(true);
         requestFocus();
 
-        timeCount = new TimeCount();
+        timeCount = TimeCount.getInstance();
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

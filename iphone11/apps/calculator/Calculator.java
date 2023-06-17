@@ -55,7 +55,7 @@ public class Calculator extends JPanel {
         calculatorBtnPosition(calculatorBtns);
         calculator(calculatorBtns);
 
-        timeCount = new TimeCount();
+        timeCount = TimeCount.getInstance();
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

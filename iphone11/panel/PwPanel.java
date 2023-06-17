@@ -3,6 +3,7 @@ package iphone11.panel;
 import iphone11.Home;
 import iphone11.etc.DefaultSetting;
 import iphone11.etc.Images;
+import iphone11.etc.Time;
 import iphone11.etc.TimeCount;
 import iphone11.etc.north.NorthPanelV1;
 
@@ -145,7 +146,7 @@ public class PwPanel extends JPanel {
         swipe.setForeground(Color.WHITE);
         swipe.setHorizontalAlignment(SwingConstants.CENTER);
 
-        timeCount = new TimeCount();
+        timeCount = TimeCount.getInstance();
         setFocusable(true);
         requestFocus();
         ActionListener actionListener = new ActionListener() {

@@ -23,6 +23,7 @@ public class Call extends JPanel {
         }
         return instance;
     }
+    private JLabel phone;
     private JLabel phoneNum;
     private String savePhoneNum = "";
     private int startY;
@@ -45,11 +46,10 @@ public class Call extends JPanel {
         this.phoneNum.setText(phoneNum);
         this.phoneNum.repaint();
     }
-    public void refreshPhoneNum() {
-        phoneNum.setText(savePhoneNum);
-        phoneNum.revalidate();
-        phoneNum.repaint();
+    public JLabel getPhone() {
+        return phone;
     }
+
     public void setSavePhoneNum(String savePhoneNum) {
         this.savePhoneNum = savePhoneNum;
         repaint();
@@ -65,6 +65,7 @@ public class Call extends JPanel {
         setOpaque(true);
         setBackground(Color.black);
 
+
         //north part
         add(new NorthPanelV2(), BorderLayout.NORTH);
 
@@ -73,11 +74,18 @@ public class Call extends JPanel {
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
-        phoneNum = new JLabel("afds");
+        phone = new JLabel("");
+        phone.setForeground(Color.white);
+        phone.setHorizontalAlignment(SwingConstants.CENTER);
+        phone.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 30));
+        phone.setBounds(0, -150, 400, 400);
+        centerPanel.add(phone);
+
+
+        phoneNum = new JLabel(getPhone().getText());
         phoneNum.setForeground(Color.WHITE);
         phoneNum.setHorizontalAlignment(SwingConstants.CENTER);
         phoneNum.setFont(new Font(DefaultSetting.getInstance().getFontName(), DefaultSetting.getInstance().getFontStyle(), 30));
-        phoneNum.setBounds(0, 0, 400, 100);
         centerPanel.add(phoneNum);
 
         int btnWidth = 80;
@@ -128,11 +136,9 @@ public class Call extends JPanel {
             numBtns[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String inputText = phoneNum.getText();
-                    phoneNum.setText(inputText + num);
+                    String inputText = phone.getText();
+                    phone.setText(inputText + num);
                     savePhoneNum += num;
-                    System.out.println(phoneNum.getText());
-                    System.out.println(savePhoneNum);
                 }
             });
         }
@@ -143,23 +149,23 @@ public class Call extends JPanel {
         numBtns[10].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputText = phoneNum.getText();
-                phoneNum.setText(inputText + "*");
+                String inputText = phone.getText();
+                phone.setText(inputText + "*");
                 savePhoneNum += "*";
             }
         });
         numBtns[11].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputText = phoneNum.getText();
-                phoneNum.setText(inputText + "#");
+                String inputText = phone.getText();
+                phone.setText(inputText + "#");
                 savePhoneNum += "#";
             }
         });
         numBtns[12].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Calling calling = Calling.getInstance();
+                Calling calling = new Calling();
                 Home home = (Home) getTopLevelAncestor();
                 DefaultSetting.setContentPane(home, calling);
                 nowCalling = true;
@@ -168,6 +174,7 @@ public class Call extends JPanel {
         numBtns[13].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                phone.setText("");
                 phoneNum.setText("");
                 savePhoneNum = "";
             }

@@ -4,9 +4,21 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class TimeCount {
-    private final int millisecond = 60000;
+    private static TimeCount instance;
+    public static TimeCount getInstance() {
+        if(instance == null) {
+            instance = new TimeCount();
+        }
+        return instance;
+    }
+    private int millisecond = 60000;
     private Timer timer;
-    public TimeCount(){}
+    private TimeCount(){}
+
+    public void setMillisecond(int millisecond) {
+        this.millisecond = millisecond;
+    }
+
     public void start(ActionListener actionListener) {
         stop();
         timer = new Timer(millisecond, actionListener);

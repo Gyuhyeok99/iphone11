@@ -14,18 +14,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Calling extends JPanel {
-    private static Calling instance;
-    public static Calling getInstance() {
-        if(instance == null) {
-            instance = new Calling();
-        }
-        return instance;
-    }
 
     private Call call;
     private int startY;
 
-    private Calling() {
+    public Calling() {
         setLayout(new BorderLayout());
         setOpaque(true);
         setBackground(Color.black);
@@ -38,6 +31,7 @@ public class Calling extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
 
         call = Call.getInstance();
+        call.setPhoneNum(call.getPhone().getText());
         JLabel phoneNum = call.getPhoneNum();
         phoneNum.setForeground(Color.WHITE);
         phoneNum.setHorizontalAlignment(SwingConstants.CENTER);
@@ -105,10 +99,8 @@ public class Calling extends JPanel {
         callingBtns[6].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                call.setPhoneNum("");
                 call.setSavePhoneNum("");
-                call.setNowCalling(false);
+                call.getPhone().setText("");
                 JPanel centerPanel1 = call.getCenterPanel();
                 Home home = (Home) getTopLevelAncestor();
                 DefaultSetting.setContentPane(home, call);
@@ -136,5 +128,10 @@ public class Calling extends JPanel {
             }
         });
     }
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        g.fillRoundRect(130, 694, 140, 8, 10, 10);
+    }
 }
