@@ -35,7 +35,6 @@ public class ClickBallGame extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(score);
                 if (clickBall(e.getX(), e.getY())) {
                     score++;
                     if (ballDX > 0) {

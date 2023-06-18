@@ -115,6 +115,7 @@ public class Calling extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 call.setSavePhoneNum("");
                 call.getPhone().setText("");
+                call.setNowCalling(false);
                 JPanel centerPanel1 = call.getCenterPanel();
                 Home home = (Home) getTopLevelAncestor();
                 DefaultSetting.setContentPane(home, call);
